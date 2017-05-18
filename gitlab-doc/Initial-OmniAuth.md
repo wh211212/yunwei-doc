@@ -51,4 +51,20 @@ gitlab_rails['smtp_enable_starttls_auto'] = true
 gitlab_rails['smtp_openssl_verify_mode'] = 'peer'
 
 ## 通过电子邮件回复
+
 GitLab可以设置为允许用户通过回复通知电子邮件来评论问题并合并请求。
+
+
+gitlab_rails['incoming_email_enabled'] = true
+gitlab_rails['incoming_email_address'] = "incoming+%{key}@gitlab.example.com"
+gitlab_rails['incoming_email_email'] = "incoming"
+gitlab_rails['incoming_email_password'] = "[REDACTED]"
+gitlab_rails['incoming_email_host'] = "gitlab.example.com"
+gitlab_rails['incoming_email_port'] = 143
+gitlab_rails['incoming_email_ssl'] = false
+gitlab_rails['incoming_email_start_tls'] = false
+gitlab_rails['incoming_email_mailbox_name'] = "inbox"
+gitlab_rails['incoming_email_idle_timeout'] = 60
+
+
+## 设置Postfix通过电子邮件回复
