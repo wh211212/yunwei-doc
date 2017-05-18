@@ -1,0 +1,14 @@
+# 查看用户
+
+SELECT DISTINCT CONCAT('User: ''',user,'''@''',host,''';') AS query FROM mysql.user;
+
+# 重置密码MySQL5.6
+
+update mysql.user set password=password('fangbuxia..0') where user='wanghui';
+flush privileges;
+
+# 权限设置
+
+GRANT ALL PRIVILEGES ON *.* TO 'wanghui'@'192.168.103.%' IDENTIFIED BY 'fangbuxia..0';
+
+# 
