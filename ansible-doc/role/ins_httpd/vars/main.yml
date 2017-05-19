@@ -1,0 +1,5 @@
+---
+  # software variables
+
+packages:
+  - httpd

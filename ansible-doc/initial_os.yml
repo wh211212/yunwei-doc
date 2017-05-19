@@ -1,0 +1,37 @@
+- hosts: api
+  remote_user: wh
+  tasks:
+  - name: copy ssh key
+    authorized_key:
+      user: wh
+      key: "{{ lookup('file', '/home/wh/.ssh/id_rsa.pub') }}"
+  - name: nopassword for wh on the remote hosts
+    action: shell sed "s/^#\ %wheel.*NOPASSWD:\ ALL/%wheel\ ALL=(ALL)\ NOPASSWD:\ ALL/" -i /etc/sudoers
+    sudo: yes
+  - name: sudo no tty for wh on the remote hosts
+    shell: sed -i '/Defaults.*requiretty/a\ Defaults:\ wh\ !requiretty' /etc/sudoers
+    shell: sed -i "$ a Defaults\:\ wh\ !requiretty" /etc/sudoers
+    sudo: yes
+  - name: configuration ulimit params on the remote hosts
+    action: shell sed -i  '$ a fs.file-max = 65535'  /etc/sysctl.conf &&  sed -i 's/1024/65535/' /etc/security/limits.d/90-nproc.conf && sed -i '$ a* soft nofile 65535\n* hard nofile 65535' /etc/security/limits.conf
+    sudo: yes
+  - name: update hostname
+      action: shell sed  -i 's/.localdomain//g' /etc/sysconfig/network && service network restart
+      sudo: yes
+  - name: install lrzsz
+    action: yum name=lrzsz state=present
+    sudo: yes
+  - name: install lsof
+    action: yum name=lsof state=present
+    sudo: yes
+  - name: config java_home
+    action: shell echo 'export JAVA_HOME=/usr/java/lawh' >> /etc/profile
+    sudo: yes
+  - name: config hostname for hosts
+    action: shell echo "{{ ansible_default_ipv4.address }} {{ ansible_hostname }}"  >> /etc/hosts
+    sudo: yes
+   - name: add kydev user
+     action: user name={{ item.name  }} state=present password={{ item.new_pass | password_hash('sha512') }} update_password=always
+     with_items:
+       - { name: 'wh',new_pass: '123456' }
+     sudo: yes

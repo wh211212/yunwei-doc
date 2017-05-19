@@ -1,0 +1,19 @@
+---
+galaxy_info:
+  author: Shaon Bean
+  description: System initialization for RedHat/CentOS.
+  company: www.aniu.tv
+  license: license (GPLv3)
+  min_ansible_version: 2.0
+  platforms:
+  - name: RedHat
+    versions:
+    - 6
+    - 7
+  categories:
+  - initial
+  galaxy_tags:
+  - api
+  - web
+  - db
+dependencies: []

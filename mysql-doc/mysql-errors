@@ -1,0 +1,10 @@
+1. 2017-05-19T00:48:37.400591Z 2048303 [Note] Aborted connection 2048303 to db: 'jumpserver' user: 'jumpserver' host: '192.168.0.101' (Got an error reading communication packets)
+
+安装jumpserver连接数据库报错
+
+解决：
+set global log_warning=1;
+set global interactive_timeout = 120;
+set global wait_timeout = 120;
+
+2. 

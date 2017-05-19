@@ -1,0 +1,45 @@
+---
+- name: Update SSH configuration to be more secure.
+  lineinfile:
+    dest: "{{ security_ssh_config_path }}"
+    regexp: "{{ item.regexp }}"
+    line: "{{ item.line }}"
+    state: present
+  with_items:
+    - regexp: "^PasswordAuthentication"
+      line: "PasswordAuthentication {{ security_ssh_PasswordAuthentication }}"
+    - regexp: "^PermitRootLogin"
+      line: "PermitRootLogin {{ security_ssh_PermitRootLogin }}"
+    - regexp: "^Port"
+      line: "Port {{ security_ssh_Port }}"
+    - regexp: "^UseDNS"
+      line: "UseDNS {{ security_ssh_usedns }}"
+    - regexp: "^PermitEmptyPasswords"
+      line: "PermitEmptyPasswords {{ security_ssh_PermitEmptyPasswords }}"
+    - regexp: "^ChallengeResponseAuthentication"
+      line: "ChallengeResponseAuthentication {{ security_ssh_ChallengeResponseAuthentication }}"
+    - regexp: "^GSSAPIAuthentication"
+      line: "GSSAPIAuthentication {{ security_ssh_GSSAPIAuthentication }}"
+    - regexp: "^X11Forwarding"
+      line: "X11Forwarding {{ security_ssh_X11Forwarding }}"
+  notify: restart ssh
+
+- name: Add configured user accounts with no password sudoers.
+  lineinfile:
+    dest: /etc/sudoers
+    regexp: '^{{ item }}'
+    line: '{{ item }} ALL=(ALL) NOPASSWD: ALL'
+    state: present
+    validate: 'visudo -cf %s'
+  with_items: "{{ security_sudoers_passwordless }}"
+  when: security_sudoers_passwordless | length > 0
+
+- name: Add configured user accounts with password sudoers.
+  lineinfile:
+    dest: /etc/sudoers
+    regexp: '^{{ item }}'
+    line: '{{ item }} ALL=(ALL) ALL'
+    state: present
+    validate: 'visudo -cf %s'
+  with_items: "{{ security_sudoers_passworded }}"
+  when: security_sudoers_passworded | length > 0
