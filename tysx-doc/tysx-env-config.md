@@ -12,6 +12,8 @@ lvcreate -n data -L 100G vg0
 mkfs.ext4 /dev/vg0/data
 mkfs.ext4 /dev/vg0/log
 
+4、
+
 
 
 
