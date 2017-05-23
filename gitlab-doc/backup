@@ -15,7 +15,7 @@ gitlab-ctl reconfigure
 
 每天凌晨2点进行一次自动备份:
 
-0 2 * * * /opt/gitlab/bin/gitlab-rake gitlab:backup:create
+0 2 1 * * /opt/gitlab/bin/gitlab-rake gitlab:backup:create
 
 # 数据恢复
 

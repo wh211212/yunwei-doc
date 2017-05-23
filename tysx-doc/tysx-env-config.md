@@ -4,6 +4,8 @@
 
 2、执行cmd_track
 
+bash cmd_track_install.sh
+
 3、挂载目录
 
 lvcreate -n log -L 100G vg0
@@ -12,12 +14,10 @@ lvcreate -n data -L 100G vg0
 mkfs.ext4 /dev/vg0/data
 mkfs.ext4 /dev/vg0/log
 
-4、
+4、安装依赖包
+yum -y install rsync wget vim openssh-clients iftop iotop sysstat  lsof telnet traceroute htop  gcc-c++ tree man iptraf lrzsz net-tools  dstat tree ntp dos2unix
 
-
-
-
-
+5、
 
 
 # tysx-prod-2
