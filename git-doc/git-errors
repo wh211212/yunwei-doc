@@ -1,0 +1,11 @@
+# fatal: Unable to create 'E:/java/crm/aniu-crm-admin/.git/index.lock': File exists.
+
+
+
+
+# [GIT] warning: LF will be replaced by CRLF
+
+git config --global core.autocrlf false
+
+
+# The file will have its original line endings in your working directory.

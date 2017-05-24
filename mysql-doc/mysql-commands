@@ -11,6 +11,8 @@ flush privileges;
 
 GRANT ALL PRIVILEGES ON *.* TO 'wanghui'@'192.168.103.%' IDENTIFIED BY 'fangbuxia..0';
 
+flush privileges;
+
 # 查看变量
 show variables like '%interactive_timeout%';
 
