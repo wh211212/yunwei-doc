@@ -3,12 +3,19 @@ https://maven.apache.org/index.html
 
 ## 将第三方JAR部署到远程存储库
 mvn deploy:deploy-file -DgroupId=cmbpay \
-  -DartifactId=cmbb2b \
-  -Dversion=1.0 \
-  -Dpackaging=jar \
-  -Dfile=D:/cmbB2B.jar \
-  -DrepositoryId=maven-releases \
-  -Durl=http://nexus.aniu.so/repository/maven-releases/
+                       -DartifactId=cmbb2b \
+                       -Dversion=1.0 \
+                       -Dpackaging=jar \
+                       -Dfile=D:/cmbB2B.jar \
+                       -DrepositoryId=nexus \
+                       -DgeneratePom=false \
+                       -Durl=dav:http://nexus.aniu.so/repository/maven-central/
+
+#
+
+mvn deploy:deploy-file -DgroupId=cmbpay -DartifactId=cmbb2b -Dversion=1.0 -Dpackaging=jar -Dfile=D:/cmbB2B.jar -DrepositoryId=nexus -DgeneratePom=false -Durl=dav:http://nexus.aniu.so/repository/maven-central/
+
+mvn deploy:deploy-file -DgroupId=cmbpay -DartifactId=cmbb2b -Dversion=1.0 -Dpackaging=jar -Dfile=/tmp/cmbB2B.jar -DrepositoryId=nexus -DgeneratePom=false -Durl=http://nexus.aniu.so/repository/maven-central
 
 
 mvn install:install-file -DgroupId=cmbpay -DartifactId=cmbb2b -Dversion=1.0 -Dpackaging=jar -Dfile=D:/cmbB2B.jar -Durl=http://nexus.aniu.so/repository/maven-releases/ -DrepositoryId=releases
