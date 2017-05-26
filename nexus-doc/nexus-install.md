@@ -29,7 +29,35 @@ admin123
 
 
 
-
 ##  nexus errors
 
  Return code is: 401, ReasonPhrase: Unauthorized.
+
+maven settings.xml add:
+
+<servers>
+  <server>
+    <id>nexus</id>
+    <username>admin</username>
+    <password>admin123</password>
+  </server>
+</servers>
+
+
+Return code is: 405, ReasonPhrase: PUT
+
+
+#
+
+<distributionManagement>
+  <repository>
+    <id>nexus</id>
+    <name>Releases</name>
+    <url>http://nexus.aniu.so/repository/maven-releases</url>
+  </repository>
+  <snapshotRepository>
+    <id>nexus</id>
+    <name>Snapshot</name>
+    <url>http://nexus.aniu.so/repository/maven-snapshots</url>
+  </snapshotRepository>
+</distributionManagement>

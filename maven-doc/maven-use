@@ -9,7 +9,7 @@ mvn deploy:deploy-file -DgroupId=cmbpay \
                        -Dfile=D:/cmbB2B.jar \
                        -DrepositoryId=nexus \
                        -DgeneratePom=false \
-                       -Durl=dav:http://nexus.aniu.so/repository/maven-central/
+                       -Durl=http://nexus.aniu.so/repository/maven-central/
 
 #
 

@@ -4,8 +4,12 @@ telnet 172.16.2.1
 
 configure terminal
 
-# 8888
-object service tcp-8888
-service tcp source eq 8888
-access-list From-dianxin extended permit tcp any host 192.168.0.55 eq 8888
-nat (inside,dianxin) source static obj-192.168.0.55 obj-175.102.133.87 service tcp-8888 tcp-8888
+# 2222
+object service tcp-21212
+service tcp source eq 21212
+access-list From-dianxin extended permit tcp any host 192.168.0.55 eq 80
+
+access-list From-dianxin extended permit tcp any host 192.168.0.55 eq www
+nat (inside,dianxin) source static obj-192.168.0.55 obj-175.102.133.88 service tcp-80 tcp-21212
+
+nat (inside,dianxin) source static obj-192.168.0.55 obj-175.102.133.88 service tcp-80 tcp-21212

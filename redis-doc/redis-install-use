@@ -1,0 +1,8 @@
+# redis 安装使用
+
+wget http://download.redis.io/releases/redis-3.2.9.tar.gz
+
+#
+
+echo 512 > /proc/sys/net/core/somaxconn
+sysctl vm.overcommit_memory=1
