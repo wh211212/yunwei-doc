@@ -9,7 +9,12 @@ mvn deploy:deploy-file -DgroupId=cmbpay \
                        -Dfile=D:/cmbB2B.jar \
                        -DrepositoryId=nexus \
                        -DgeneratePom=false \
-                       -Durl=http://nexus.aniu.so/repository/maven-central/
+                       -Durl=http://nexus.aniu.so/repository/maven-releases/
+
+ mvn deploy:deploy-file -DgroupId=cmbpay \  -DartifactId=cmbb2b \  -Dversion=1.0 \  -Dpackaging=jar \  -Dfile=D:/cmbB2B.jar \
+                                              -DrepositoryId=nexus \
+                                              -DgeneratePom=false \
+                                              -Durl=http://nexus.aniu.so/repository/maven-releases/
 
 #
 
@@ -19,3 +24,47 @@ mvn deploy:deploy-file -DgroupId=cmbpay -DartifactId=cmbb2b -Dversion=1.0 -Dpack
 
 
 mvn install:install-file -DgroupId=cmbpay -DartifactId=cmbb2b -Dversion=1.0 -Dpackaging=jar -Dfile=D:/cmbB2B.jar -Durl=http://nexus.aniu.so/repository/maven-releases/ -DrepositoryId=releases
+
+
+
+mvn deploy:deploy-file -DgroupId=alipay-sdk \
+                       -DartifactId=alipay-sdk-java \
+                       -Dversion=20170411150054 \
+                       -Dpackaging=jar \
+                       -Dfile=E:/jar/alipay-sdk-java-20170411150054.jar \
+                       -DrepositoryId=nexus \
+                       -DgeneratePom=false \
+                       -Durl=http://nexus.aniu.so/repository/maven-releases/
+
+#
+## 将第三方JAR部署到远程存储库
+mvn deploy:deploy-file -DgroupId=gexin-rp-sdk \
+                       -DartifactId=base \
+                       -Dversion=2.0.0.3 \
+                       -Dpackaging=jar \
+                       -Dfile=E:/jar/base-2.0.0.3.jar \
+                       -DrepositoryId=nexus \
+                       -DgeneratePom=false \
+                       -Durl=http://nexus.aniu.so/repository/maven-releases/
+
+mvn deploy:deploy-file -DgroupId=gexin-rp-sdk \
+                       -DartifactId=http \
+                       -Dversion=3.0.0.10 \
+                       -Dpackaging=jar \
+                       -Dfile=E:/jar/http-3.0.0.10.jar \
+                       -DrepositoryId=nexus \
+                       -DgeneratePom=false \
+                       -Durl=http://nexus.aniu.so/repository/maven-releases/
+
+mvn deploy:deploy-file -DgroupId=gexin-rp-sdk \
+                       -DartifactId=template \
+                       -Dversion=2.0.0.9 \
+                       -Dpackaging=jar \
+                       -Dfile=E:/jar/template-2.0.0.9.jar \
+                       -DrepositoryId=nexus \
+                       -DgeneratePom=false \
+                       -Durl=http://nexus.aniu.so/repository/maven-releases/
+
+
+
+                       # mvn clean deploy -B -U
