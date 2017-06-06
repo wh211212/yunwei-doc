@@ -10,6 +10,10 @@ service tcp source eq 21212
 access-list From-dianxin extended permit tcp any host 192.168.0.55 eq 80
 
 access-list From-dianxin extended permit tcp any host 192.168.0.55 eq www
+
+object network obj-192.168.0.55
+host 192.168.0.55
+
 nat (inside,dianxin) source static obj-192.168.0.55 obj-175.102.133.88 service tcp-80 tcp-21212
 
 nat (inside,dianxin) source static obj-192.168.0.55 obj-175.102.133.88 service tcp-80 tcp-21212
