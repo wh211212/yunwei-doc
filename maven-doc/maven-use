@@ -56,11 +56,11 @@ mvn deploy:deploy-file -DgroupId=gexin-rp-sdk \
                        -DgeneratePom=false \
                        -Durl=http://nexus.aniu.so/repository/maven-releases/
 
-mvn deploy:deploy-file -DgroupId=gexin-rp-sdk \
-                       -DartifactId=template \
-                       -Dversion=2.0.0.9 \
+mvn deploy:deploy-file -DgroupId=it.sauronsoftware \
+                       -DartifactId=jave \
+                       -Dversion=1.0.2 \
                        -Dpackaging=jar \
-                       -Dfile=E:/jar/template-2.0.0.9.jar \
+                       -Dfile=E:/jar/jave-1.0.2.jar \
                        -DrepositoryId=nexus \
                        -DgeneratePom=false \
                        -Durl=http://nexus.aniu.so/repository/maven-releases/
