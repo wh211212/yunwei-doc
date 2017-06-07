@@ -7,11 +7,22 @@ SELECT DISTINCT CONCAT('User: ''',user,'''@''',host,''';') AS query FROM mysql.u
 update mysql.user set password=password('fangbuxia..0') where user='wanghui';
 flush privileges;
 
+
+update mysql.user set password=password('root') where User='root';
+
 # 权限设置
 
-GRANT ALL PRIVILEGES ON *.* TO 'wanghui'@'192.168.103.%' IDENTIFIED BY 'fangbuxia..0';
+GRANT ALL PRIVILEGES ON *.* TO 'yunwei'@'%' IDENTIFIED BY 'fangbuxia..0';
+
+GRANT ALL PRIVILEGES ON walle.* TO 'walle'@'%' IDENTIFIED BY '@Walle123.';
 
 flush privileges;
+
+# 权限删除
+
+delete from mysql.user where user="walle" and host="192.168.0.%";
+GRANT ALL PRIVILEGES ON walle.* TO 'walle'@'127.0.0.1' IDENTIFIED BY '@Walle123.';
+
 
 # 查看变量
 show variables like '%interactive_timeout%';
@@ -19,3 +30,6 @@ show variables like '%interactive_timeout%';
 set global log_warning=1;
 set global interactive_timeout = 120;   服务器关闭交互式连接前等待活动的秒数。交互式客户端定义为在mysql_real_connect()中使用CLIENT_INTERACTIVE选项的客户端。参数默认值：28800秒（8小时）
 set global wait_timeout = 120;  服务器关闭非交互连接之前等待活动的秒数。参数默认值：28800秒（8小时）
+
+
+#
