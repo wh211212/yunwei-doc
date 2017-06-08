@@ -1,0 +1,22 @@
+# docker 常用命令
+
+[root@docker ~]# docker version
+Client:
+ Version:      17.03.1-ce
+ API version:  1.27
+ Go version:   go1.7.5
+ Git commit:   c6d412e
+ Built:        Mon Mar 27 17:05:44 2017
+ OS/Arch:      linux/amd64
+
+Server:
+ Version:      17.03.1-ce
+ API version:  1.27 (minimum version 1.12)
+ Go version:   go1.7.5
+ Git commit:   c6d412e
+ Built:        Mon Mar 27 17:05:44 2017
+ OS/Arch:      linux/amd64
+ Experimental: false
+
+[root@docker ~]# docker --version
+Docker version 17.03.1-ce, build c6d412e
