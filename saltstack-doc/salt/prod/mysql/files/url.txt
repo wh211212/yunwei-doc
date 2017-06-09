@@ -1,0 +1,4 @@
+wget -c http://liquidtelecom.dl.sourceforge.net/project/boost/boost/1.59.0/boost_1_59_0.tar.gz -P /usr/local/src/
+wget -c http://git.typecodes.com/libs/ccpp/cmake-3.2.1.tar.gz
+wget -c http://cdn.mysql.com//Downloads/MySQL-5.7/mysql-5.7.12.tar.gz -P /usr/local/src/
+
