@@ -14,7 +14,7 @@ update mysql.user set password=password('root') where User='root';
 
 GRANT ALL PRIVILEGES ON *.* TO 'yunwei'@'%' IDENTIFIED BY 'fangbuxia..0';
 
-GRANT ALL PRIVILEGES ON walle.* TO 'walle'@'%' IDENTIFIED BY '@Walle123.';
+GRANT ALL PRIVILEGES ON algo_quote.* TO 'nkmadmin'@'%' IDENTIFIED BY 'Nkmadmin123.';
 
 flush privileges;
 

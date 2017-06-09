@@ -14,4 +14,4 @@ username 用户名 attributes
 # 更改用户密码
 
 username 用户名 pass 密码
-username xindongfeng pass 9hMtNsN49JdsnLsadL
+username zhangjinshuai pass 9hMtNsN49JdsnLsadL

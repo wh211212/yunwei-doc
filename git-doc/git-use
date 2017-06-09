@@ -6,3 +6,7 @@ https://www.gitignore.io/
 
 
 gitignore_global.txt
+
+# set remote usl
+
+git remote set-url origin git@gitlab.aniu.so:wengu/jhy-admin.git   git@gitlab.aniu.so:wengu/jhy.git
