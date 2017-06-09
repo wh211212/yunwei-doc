@@ -47,23 +47,25 @@ mvn deploy:deploy-file -DgroupId=gexin-rp-sdk \
                        -DgeneratePom=false \
                        -Durl=http://nexus.aniu.so/repository/maven-releases/
 
-mvn deploy:deploy-file -DgroupId=gexin-rp-sdk \
-                       -DartifactId=http \
-                       -Dversion=3.0.0.10 \
+mvn deploy:deploy-file -DgroupId=com.ape.jeql \
+                       -DartifactId=jeql \
+                       -Dversion=1.0 \
                        -Dpackaging=jar \
-                       -Dfile=E:/jar/http-3.0.0.10.jar \
+                       -Dfile=E:/jar/jeql-1.0.jar \
                        -DrepositoryId=nexus \
                        -DgeneratePom=false \
                        -Durl=http://nexus.aniu.so/repository/maven-releases/
 
-mvn deploy:deploy-file -DgroupId=it.sauronsoftware \
-                       -DartifactId=jave \
-                       -Dversion=1.0.2 \
+mvn deploy:deploy-file -DgroupId=com.ape.staticpage-client \
+                       -DartifactId=staticpage-client \
+                       -Dversion=1.2.0 \
                        -Dpackaging=jar \
-                       -Dfile=E:/jar/jave-1.0.2.jar \
+                       -Dfile=E:/jar/staticpage-client-1.2.0.jar \
                        -DrepositoryId=nexus \
                        -DgeneratePom=false \
                        -Durl=http://nexus.aniu.so/repository/maven-releases/
+
+
 
 
 
