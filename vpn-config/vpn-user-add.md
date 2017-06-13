@@ -15,3 +15,20 @@ username 用户名 attributes
 
 username 用户名 pass 密码
 username zhangjinshuai pass 9hMtNsN49JdsnLsadL
+
+
+#
+username huangjianhang password shpqS8Dkq4ND8b06 encrypted
+username huangjianhang attributes
+ vpn-group-policy ROOT
+ vpn-framed-ip-address 192.168.103.186 255.255.255.255
+
+ username yangbo password shpqS8Dkq4ND8b06 encrypted
+ username yangbo attributes
+  vpn-group-policy ROOT
+  vpn-framed-ip-address 192.168.103.187 255.255.255.255
+
+  username zhangxiaodan password shpqS8Dkq4ND8b06 encrypted
+  username zhangxiaodan attributes
+   vpn-group-policy ROOT
+   vpn-framed-ip-address 192.168.103.188 255.255.255.255  
