@@ -14,21 +14,21 @@ username 用户名 attributes
 # 更改用户密码
 
 username 用户名 pass 密码
-username zhangjinshuai pass 9hMtNsN49JdsnLsadL
 
+username huangjianhang pass 123qwe!@#
 
-#
-username huangjianhang password shpqS8Dkq4ND8b06 encrypted
+# zfund vpn
+username huangjianhang password RFz1wu4jz4U3CBOC encrypted
 username huangjianhang attributes
  vpn-group-policy ROOT
  vpn-framed-ip-address 192.168.103.186 255.255.255.255
 
- username yangbo password shpqS8Dkq4ND8b06 encrypted
+ username yangbo password hkUsF7Z1Aq2A2ubs encrypted
  username yangbo attributes
   vpn-group-policy ROOT
   vpn-framed-ip-address 192.168.103.187 255.255.255.255
 
-  username zhangxiaodan password shpqS8Dkq4ND8b06 encrypted
+  username zhangxiaodan password BFOsZ4pq7CXe51qS encrypted
   username zhangxiaodan attributes
    vpn-group-policy ROOT
-   vpn-framed-ip-address 192.168.103.188 255.255.255.255  
+   vpn-framed-ip-address 192.168.103.188 255.255.255.255
