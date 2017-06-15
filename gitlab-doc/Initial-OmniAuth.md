@@ -31,9 +31,6 @@
 
 ##
 
-
-
-
 ## SMTP设置
 
 > 如果您希望通过SMTP服务器而不是通过Sendmail发送应用程序电子邮件，请将以下配置信息添加到/etc/gitlab/gitlab.rb并运行gitlab-ctl reconfigure。

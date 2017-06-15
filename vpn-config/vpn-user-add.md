@@ -18,17 +18,18 @@ username 用户名 pass 密码
 username huangjianhang pass 123qwe!@#
 
 # zfund vpn
-username huangjianhang password RFz1wu4jz4U3CBOC encrypted
+
+username huangjianhang password RFz1wu4jz4U3CBOC
 username huangjianhang attributes
  vpn-group-policy ROOT
  vpn-framed-ip-address 192.168.103.186 255.255.255.255
 
- username yangbo password hkUsF7Z1Aq2A2ubs encrypted
+ username yangbo password hkUsF7Z1Aq2A2ubs
  username yangbo attributes
   vpn-group-policy ROOT
   vpn-framed-ip-address 192.168.103.187 255.255.255.255
 
-  username zhangxiaodan password BFOsZ4pq7CXe51qS encrypted
+  username zhangxiaodan password BFOsZ4pq7CXe51qS
   username zhangxiaodan attributes
    vpn-group-policy ROOT
    vpn-framed-ip-address 192.168.103.188 255.255.255.255
