@@ -1,5 +1,11 @@
-# docker 常用命令
+# docker 常用命令集
 
+> 文章Docker所有操作基于CentOS Linux release 7.3.1611 (Core)，docker-ce
+
+
+- 查看docker版本
+
+```
 [root@docker ~]# docker version
 Client:
  Version:      17.03.1-ce
@@ -17,25 +23,35 @@ Server:
  Built:        Mon Mar 27 17:05:44 2017
  OS/Arch:      linux/amd64
  Experimental: false
-
+#
 [root@docker ~]# docker --version
 Docker version 17.03.1-ce, build c6d412e
+```
 
-# 容器 相关
+##  容器相关命令
 
-docker build -t friendlyname .  # Create image using this directory's Dockerfile
-docker run -p 4000:80 friendlyname  # Run "friendlyname" mapping port 4000 to 80
-docker run -d -p 4000:80 friendlyname         # Same thing, but in detached mode
-docker ps                                 # See a list of all running containers
-docker stop <hash>                     # Gracefully stop the specified container
-docker ps -a           # See a list of all containers, even the ones not running
-docker kill <hash>                   # Force shutdown of the specified container
-docker rm <hash>              # Remove the specified container from this machine
-docker rm $(docker ps -a -q)           # Remove all containers from this machine
-docker images -a                               # Show all images on this machine
-docker rmi <imagename>            # Remove the specified image from this machine
-docker rmi $(docker images -q)             # Remove all images from this machine
-docker login             # Log in this CLI session using your Docker credentials
-docker tag <image> username/repository:tag  # Tag <image> for upload to registry
-docker push username/repository:tag            # Upload tagged image to registry
-docker run username/repository:tag                   # Run image from a registry
+```
+docker build -t friendlyname .  # 使用当前目录的Dockerfile创建一个镜像
+docker run -p 4000:80 friendlyname  # 运行名为"friendlyname"镜像，将端口4000映射到80
+docker run -d -p 4000:80 friendlyname         # 使用-d参数，后台运行容器
+docker ps                                 # 查看所有运行容器的列表
+docker stop <hash>                     # 优雅地停止指定的容器
+docker ps -a           # 查看所有容器的列表，即使是没有运行的容器
+docker kill <hash>                   # 指定容器的强制关闭
+docker rm <hash>              # 从这个机器中删除指定的容器
+docker rm $(docker ps -a -q)           # 从该机器中删除所有容器
+docker images -a                               # 显示这台机器上的所有镜像
+docker rmi <imagename>            # 从这个机器中删除指定的镜像
+docker rmi $(docker images -q)             # 从该机器中删除所有镜像
+docker login             # 使用Docker证书登录这个CLI会话，在dockerhub创建自己账号，使用账号密码登录：https://hub.docker.com/
+docker tag <image> username/repository:tag  # 给镜像打标签以便上传到私有仓库（dockerhub）
+docker push username/repository:tag            # 上传打上标签的镜像（这里的操作个人认为类似git）
+docker run username/repository:tag                   # 从仓库运行镜像
+```
+
+# 服务相关命令
+
+```
+请确保您的映像通过运行此命令作为部署容器，并访问http：// localhost /（在您的信息中插入用户名，repo和标签）：
+docker run -p 80:80 username/repo:taghaode
+```

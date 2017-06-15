@@ -1,9 +1,54 @@
 # Get set up and oriented
 
+docker build -t friendlyhello .
+
+
+docker run -d -p 4000:80 friendlyhello
+
+
+# 登录
+
+docker login
+
+# 对镜像打标签
 
 
 
-# 容器
+# 服务
+
+docker-compose.yml文件是一个YAML文件，用于定义Docker容器在生产过程中的行为
+
+docker-compose.yml
+
+```
+version: "1"
+services:
+  web:
+    image: shaonbean/nginx:latest
+    deploy:
+      replicas: 5
+      resources:
+        limits:
+          cpus: "0.1"
+          memory: 50M
+      restart_policy:
+        condition: on-failure
+    ports:
+      - "80:80"
+    networks:
+      - webnet
+networks:
+  webnet:
+```
 
 
-使用Dockerfile定义一个容器
+[root@docker docker]# docker swarm init
+Swarm initialized: current node (imlwiq6ll83e57rtp03kml1wy) is now a manager.
+
+To add a worker to this swarm, run the following command:
+
+    docker swarm join \
+    --token SWMTKN-1-2ieh64v8yyzp8me20irbnzerv2oqbtevz02vj3wmu8457cq2l3-b5s2thl583lxd39jkyjuwcjcz \
+    192.168.0.66:2377
+
+To add a manager to this swarm, run 'docker swarm join-token manager' and follow the instructions.

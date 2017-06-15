@@ -1,7 +1,14 @@
+# port-maping zfund
+
+route add 192.168.0.62 mask 255.255.255.255 10.1.1.1
+
+route add 192.168.0.62 mask 255.255.255.255 10.1.1.1
+
 # aniutv
 
 cat > /srv/salt/prod/init/files/upload.txt << EOF
-
+nkmv3/myweb/Niuke/Publicfile/View/Html/investedufooter.html
+nkmv3/myweb/Public/Common/js/js.js
 EOF
 
 
