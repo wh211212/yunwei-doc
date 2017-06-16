@@ -2,32 +2,30 @@
 
 route add 192.168.0.62 mask 255.255.255.255 10.1.1.1
 
-route add 192.168.0.62 mask 255.255.255.255 10.1.1.1
-
+route add 192.168.0.66 mask 255.255.255.255 10.1.1.1
 # aniutv
 
 cat > /srv/salt/prod/init/files/upload.txt << EOF
-nkmv3/myweb/Niuke/Publicfile/View/Html/investedufooter.html
-nkmv3/myweb/Public/Common/js/js.js
+wx/Web/Index/Controller/ActivityController.class.php
+wx/Web/Index/Controller/ApiController.class.php
+wx/Web/Index/View/Activity/fengxianpingce.html
+wx/Web/Index/View/Activity/pingcesucc.html
 EOF
-
 
 # aniucom
-cat > /srv/salt/prod/init/files/upload.txt << EOF
-aniucom/myweb/Niuke/Publicfile/View/Html/header.html
-EOF
 
+cat > /srv/salt/prod/init/files/upload.txt << EOF
+njdx/myweb/Aniuweb/Publicfile/View/Html/header.html
+njdx/myweb/Public/Common/css/public.css
+EOF
 
 # neimu
 
 cat > /srv/salt/prod/init/files/upload.txt << EOF
-neimu/App/Lib/Action/IndexAction.class.php
+neimu/App/Tpl/Common_Top.html
 EOF
 
-
 # tysx
-
-
 
 
 # zabbix && saltstack
@@ -39,7 +37,6 @@ salt -N group_wx state.sls init.upgrade env=prod    # wx 更新
 salt -N group_anzt state.sls init.anztweb env=prod  # anzt更新
 
 salt -N group_anzt state.sls init.anztweb env=prod  # neimu 更新
-
 
 # ansible
 
