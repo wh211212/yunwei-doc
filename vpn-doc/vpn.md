@@ -12,8 +12,7 @@ username zhuhaibo password G5HU1ec7ZiOwBD3w
 username zhengxinlei password E7U7tLw0D9J5vmxD
 username wuyuhang password frsU1m3QOMWXfREy    Ƿ����
 username zhangxiaodan password 5Gl3znqkMdiq26qA
-username nkb password gwnsxYlAw8low2ky
-username linjun password TP4ouwNQ0Pm7Jd35
+# username nkb password gwnsxYlAw8low2ky
 username tangxiuwen password QfgI1wDTe0KD0gs5
 username linbo password r5LgxLg6mZOKmzu0
 username liaofang password KEhtuJAqsQl76UyQ
@@ -22,7 +21,6 @@ username tangjiancheng password nH2aHXFOhFRmB0gr
 username liusihan password oqFvF2J7GzCq2Bgo
 username lipeisen password rLdDIuzSQbdVwonB
 username sunchao password a6kQ8i2gKhxPL1UI
-username zmj password Dy8y5l4JZc8a38TB
 username fangguangming password SuWWGGzSaOiGgoLE
 username niukemi password lAgXrMNbDqMHuahn
 username qyt password fuk9f3EsiPII8o5M
@@ -40,4 +38,3 @@ username hexiuwen password v4Pi0q8kq20qg7Ki
 username xuxiajun password ut4NAVuh1qhzWofF
 username huangjianhang password GjnsP4esNJksFbK2
 username xupeipei password vusQ6e0cO3k1gHv5
-username xuwenjun password AkNcfevy625Ln1tf
