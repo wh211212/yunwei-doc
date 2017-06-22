@@ -1,5 +1,7 @@
 # redis 安装使用
 
+https://redis.io/documentation
+
 wget http://download.redis.io/releases/redis-3.2.9.tar.gz
 
 #

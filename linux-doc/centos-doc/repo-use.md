@@ -15,3 +15,9 @@ baseurl=https://repo.saltstack.com/yum/redhat/$releasever/$basearch/latest
 enabled=1
 gpgcheck=1
 gpgkey=https://repo.saltstack.com/yum/redhat/$releasever/$basearch/latest/SALTSTACK-GPG-KEY.pub
+
+# oracle
+http://public-yum.oracle.com
+
+#
+rpm -ivh https://dl.fedoraproject.org/pub/epel/epel-release-latest-6.noarch.rpm
