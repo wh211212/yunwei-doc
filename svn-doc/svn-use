@@ -1,6 +1,8 @@
-# 
+#
 
-htpasswd -m /etc/subversion/passwd huangjianhang
+htpasswd -m /etc/subversion/passwd wangyiqiang
+
+cXN6Tp4S9wCylQsx
 
 htpasswd -m /etc/subversion/passwd yangbo
 

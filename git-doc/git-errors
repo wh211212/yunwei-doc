@@ -9,3 +9,6 @@ git config --global core.autocrlf false
 
 
 # The file will have its original line endings in your working directory.
+
+#
+Segmentation fault
