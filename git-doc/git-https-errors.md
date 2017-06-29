@@ -82,5 +82,11 @@ $find . -type d -empty -and -not -regex ./\.git.* -exec touch {}/.gitignore \; �
 git pull origin –allow-unrelated-histories
 
 #
-git config –global http.sslVerify false
-git clone https://root:fangbuxia..0@gitlab.aniu.so/aniu-web/tv189.git
+git config --global http.sslVerify false
+git clone https://yunwei:anwg123.@gitlab.aniu.so/aniu-web/tv189.git
+
+
+
+git remote add origin https://yunwei:anwg123.@gitlab.aniu.so/aniu-web/tv189.git
+
+https://gitlab.aniu.so/aniu-web/tv189.git
