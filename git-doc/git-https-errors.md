@@ -52,8 +52,6 @@ fatal: HTTP request failed
 
 git config –global http.sslVerify false
 
-
-
 3. 用 git 保存空目录
 git 和 svn 不同，仅仅跟踪文件的变动，不跟踪目录。所以，一个空目录，如果里面没有文件，即便 git add 这个目录，
 

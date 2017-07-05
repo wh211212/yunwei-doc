@@ -2,27 +2,31 @@
 
 route add 192.168.0.62 mask 255.255.255.255 10.1.1.1
 
+route add 192.168.1.1 mask 255.255.255.0 10.1.1.1
+
 route add 192.168.0.66 mask 255.255.255.255 10.1.1.1
+
+route add 10.1.2.1 mask 255.255.255.0 10.1.1.1
+
+route add 192.168.0.247 mask 255.255.255.255 10.1.1.1
 # aniutv
 
 cat > /srv/salt/prod/init/files/upload.txt << EOF
-wx/Web/Index/Controller/ActivityController.class.php
-wx/Web/Index/Controller/ApiController.class.php
-wx/Web/Index/View/Activity/fengxianpingce.html
-wx/Web/Index/View/Activity/pingcesucc.html
+njdx/myweb/Aniuweb/Zjt/Controller/CompanyController.class.php
+njdx/myweb/Aniuweb/Zjt/View/Company/companynav.html
 EOF
 
 # aniucom
 
 cat > /srv/salt/prod/init/files/upload.txt << EOF
-njdx/myweb/Aniuweb/Publicfile/View/Html/header.html
-njdx/myweb/Public/Common/css/public.css
+aniucom/myweb/Niuke/Bk/View/Combination/details.html
+aniucom/myweb/Niuke/Bktest/View/Combination/details.html
 EOF
 
 # neimu
 
 cat > /srv/salt/prod/init/files/upload.txt << EOF
-neimu/App/Tpl/Common_Top.html
+njdx/myweb/Aniuweb/Publicfile/View/Html/dakaheader.html
 EOF
 
 # tysx
@@ -38,8 +42,15 @@ salt -N group_anzt state.sls init.anztweb env=prod  # anzt更新
 
 salt -N group_anzt state.sls init.anztweb env=prod  # neimu 更新
 
+#
+salt -N group_web state.sls init.clean env=prod
+
+
 # ansible
 
 /usr/bin/ansible pm.aniu.so -m shell -a '/bin/bash /home/wh/script/upgrade-zentao.sh' -o
 
 ssh root@'pm.aniu.so' '/bin/bash /home/wh/script/upgrade-zentao.sh'
+
+
+13524720109 钟小姐

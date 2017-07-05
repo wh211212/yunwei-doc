@@ -128,5 +128,8 @@ set global wait_timeout = 120;  服务器关闭非交互连接之前等待活动
 
 # 查看mysql进程连接
 show processlist;
+show variables like 'wait_timeout';
 
- show variables like 'wait_timeout';
+ # mysql导入 备份
+
+ 

@@ -33,3 +33,17 @@ username huangjianhang attributes
   username zhangxiaodan attributes
    vpn-group-policy ROOT
    vpn-framed-ip-address 192.168.103.188 255.255.255.255
+
+
+# 新增vpn账号步骤
+BeiaiQ4-ASA-01# configure terminal
+BeiaiQ4-ASA-01(config)# username wangyiqiang password BFOsZ4pq7CXe51qs
+BeiaiQ4-ASA-01(config)# username wangyiqiang attributes
+BeiaiQ4-ASA-01(config-username)# vpn-group-policy ROOT
+BeiaiQ4-ASA-01(config-username)# vpn-framed-ip-address 192.168.103.190 255.255$
+#
+   username wangyiqiang password BFOsZ4pq7CXe51qs
+   username wangyiqiang attributes
+    vpn-group-policy ROOT
+    vpn-framed-ip-address 192.168.103.190 255.255.255.255
+#

@@ -7,4 +7,11 @@ set global log_warning=1;
 set global interactive_timeout = 120;
 set global wait_timeout = 120;
 
-2. 
+2. 查看mysql 是否存在锁表
+
+show status like '%lock%';
+
+show OPEN TABLES where In_use > 0;
+
+3. 查看慢日志
+show variables like "long_query_time";

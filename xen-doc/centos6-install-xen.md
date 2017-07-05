@@ -54,23 +54,7 @@ mount /dev/VolGroup/data  /data/
 
 echo "/dev/mapper/VolGroup-data    /data                   ext4    defaults        1 1" >> /etc/fstab
 
-
-
 # 安装脚本
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 #!/bin/bash

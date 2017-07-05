@@ -1,1 +1,172 @@
 # http://www.cisco.com/c/en/us/td/docs/security/asa/asa91/release/notes/asarn91.html
+
+
+# cisco 3750G
+
+
+
+
+
+# cisco 2960
+
+## cisco 交换机清除密码
+
+console线
+
+
+步骤一：用笔记本通过控制线连接到交换机com口，打开超级终端调试窗口
+
+
+步骤二：交换机重新上电，上电过程中，按住交换机正面"mode"按钮，直到sys灯不闪动为止（即：常亮状态），进入到交换机的底层模式switch: 如下图：
+
+[mode](http://jingyan.baidu.com/album/c33e3f48ab1745ea15cbb5e8.html?picindex=1)
+
+Using driver version 1 for media type 1
+Base ethernet MAC Address: 34:db:fd:f1:b5:80
+Xmodem file system is available.
+The password-recovery mechanism is enabled.
+
+The system has been interrupted prior to initializing the
+flash filesystem.  The following commands will initialize
+the flash filesystem, and finish loading the operating
+system software:
+
+    flash_init
+    boot
+
+
+switch:
+
+# 步骤三：输入命令<flash_init > 回车，初始化flash文件系统。PS:该模式下，不支持命令的缩写，一定要把命令写全。
+
+switch: flash_init
+Initializing Flash...
+mifs[2]: 10 files, 1 directories
+mifs[2]: Total bytes     :    1806336
+mifs[2]: Bytes used      :     612352
+mifs[2]: Bytes available :    1193984
+mifs[2]: mifs fsck took 1 seconds.
+mifs[3]: 0 files, 1 directories
+mifs[3]: Total bytes     :    3870720
+mifs[3]: Bytes used      :       1024
+mifs[3]: Bytes available :    3869696
+mifs[3]: mifs fsck took 1 seconds.
+mifs[4]: 5 files, 1 directories
+mifs[4]: Total bytes     :     258048
+mifs[4]: Bytes used      :       9216
+mifs[4]: Bytes available :     248832
+mifs[4]: mifs fsck took 0 seconds.
+mifs[5]: 5 files, 1 directories
+mifs[5]: Total bytes     :     258048
+mifs[5]: Bytes used      :       9216
+mifs[5]: Bytes available :     248832
+mifs[5]: mifs fsck took 1 seconds.
+-- MORE --
+mifs[6]: 566 files, 19 directories
+mifs[6]: Total bytes     :   57931776
+mifs[6]: Bytes used      :   15290368
+mifs[6]: Bytes available :   42641408
+mifs[6]: mifs fsck took 30 seconds.
+...done Initializing Flash.
+
+switch:
+
+# 步骤四：输入命令<dir flash> 回车，查看交换机配置文件，为下一步工作作准备。
+
+unable to stat flash/: no such device  # 报错
+
+# 步骤五：输入命令<rename flash:config.text flash:aniu.test>回车，重命名交换机原始配置文件。 PS: "aniu.test"是随便取得文件名。
+
+# 步骤六：输入命令<dir flash> 回车，查看文件名是否修改成功；成功后，输入命令<boot>,重启交换机。
+
+> 跳过步骤四五直接输入命令<boot>,重启交换机
+
+cisco WS-C2960S-24TS-L (PowerPC) processor (revision J0) with 131072K bytes of memory.
+Processor board ID FOC1738Y2UC
+Last reset from power-on
+1 Virtual Ethernet interface
+1 FastEthernet interface
+28 Gigabit Ethernet interfaces
+The password-recovery mechanism is enabled.
+
+512K bytes of flash-simulated non-volatile configuration memory.
+Base ethernet MAC Address       : 34:DB:FD:F1:B5:80
+Motherboard assembly number     : 73-11910-09
+Power supply part number        : 341-0328-02
+Motherboard serial number       : FOC173804FP
+Power supply serial number      : DCA1724M1C6
+Model revision number           : J0
+Motherboard revision number     : A0
+Model number                    : WS-C2960S-24TS-L
+Daughterboard assembly number   : 73-11933-04
+Daughterboard serial number     : FOC173716PZ
+System serial number            : FOC1738Y2UC
+Top Assembly Part Number        : 800-30954-04
+Top Assembly Revision Number    : A0
+Version ID                      : V04
+CLEI Code Number                : COMGG00ARD
+Daughterboard revision number   : A0
+Hardware Board Revision Number  : 0x01
+
+
+Switch Ports Model              SW Version            SW Image
+------ ----- -----              ----------            ----------
+*    1 28    WS-C2960S-24TS-L   12.2(55)SE7           C2960S-UNIVERSALK9-M
+...
+...
+...
+
+Press RETURN to get started!
+
+
+*Mar  1 00:00:1: %LINEPROTO-5-UPDOWN: Line protocol on Interface Vlan4, changed state to down
+*Mar  1 00:02:11.570: %LINEPROTO-5-UPDOWN: Line protocol on Interface Vlan30, changed state to down
+*Mar  1 00:02:11.570: %LINEPROTO-5-UPDOWN: Line protocol on Interface Vlan40, changed state to down
+*Mar  1 00:02:11.575: %LINEPROTO-5-UPDOWN: Line protocol on Interface Vlan100, changed state to down
+*Mar  1 00:02:11.575: %LINEPROTO-5-UPDOWN: Line protocol on Interface Vlan101, changed state to down
+*Mar  1 00:02:11.622: %SYS-5-CONFIG_I: Configured from memory by console
+*Mar  1 00:02:11.837: %STACKMGR-5-SWITCH_READY: Switch 1 is READY
+*Mar  1 00:02:11.837: %STACKMGR-4-STACK_LINK_CHANGE: Stack Port 1 Switch 1 has changed to state DOWN
+*Mar  1 00:02:11.837: %STACKMGR-4-STACK_LINK_CHANGE: Stack Port 2 Switch 1 has changed to state DOWN
+*Mar  1 00:02:12.241: %STACKMGR-5-MASTER_READY: Master Switch 1 is READY
+*Mar  1 00:02:12.251: %SYS-5-RESTART: System restarted --
+Cisco IOS Software, C2960S Software (C2960S-UNIVERSALK9-M), Version 12.2(55)SE7, RELEASE SOFTWARE (fc1)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2013 by Cisco Systems, Inc.
+Compiled Mon 28-Jan-13 10:28 by prod_rel_team
+*Mar  1 00:02:12.267: %SSH-5-ENABLED: SSH 1.99 has been enabled
+*Mar  1 00:02:14.196: %USB_CONSOLE-6-MEDIA_RJ45: Console media-type is RJ45.
+*Mar  1 00:02:14.243: %LINK-3-UPDOWN: Interface FastEthernet0, changed state to down
+*Mar  1 00:02:15.245: %LINEPROTO-5-UPDOWN: Line protocol on Interface FastEthernet0, changed state to down
+
+User Access Verification
+
+Password:
+
+# 重启完成如上图
+
+
+IDC-2960-1 con0 is now available  # 插上网线后提示
+
+
+# cisco 2960s配置
+
+aniu-yunwei>en  第一次密码为空
+aniu-yunwei#conf t  进入全局配置模式
+Enter configuration commands, one per line.  End with CNTL/Z.
+aniu-yunwei(config)#hostname aniu-yunwei  设置交换机名
+aniu-yunwei(config)#enable secret 211212  设置特权加密口令为 211212
+aniu-yunwei(config)#enable password 211212
+The enable password you have chosen is the same as your enable secret.
+This is not recommended.  Re-enter the enable password.
+aniu-yunwei(config)#enable password wh211212 设置特权非密口令为 wh211212
+aniu-yunwei(config)#li
+aniu-yunwei(config)#line console 0  进入控制台口(Rs232)
+aniu-yunwei(config-line)#password anwg  设置登录口令anwg
+aniu-yunwei(config-line)#login  登录要求口令验证
+aniu-yunwei(config-line)#line vty 0 4   进入虚拟终端virtual tty
+aniu-yunwei(config-line)#password aniu  设置登录口令aniu
+aniu-yunwei(config-line)#login 登录要求口令验证
+aniu-yunwei(config-line)#exit  返回上一层
+aniu-yunwei(config)#exit  
+aniu-yunwei#
