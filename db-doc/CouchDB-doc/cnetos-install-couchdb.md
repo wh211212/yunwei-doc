@@ -106,8 +106,8 @@ vim /usr/local/couchdb/etc/vm.args
 
 > 注意：前提时设置系统需要设置hostname，修改完成系统hosts文件为
 
+127.0.0.1   localhost localhost.localdomain n1couchdb.aniu.so
 0.0.0.0   localhost localhost.localdomain n1couchdb.aniu.so
-#0.0.0.0   localhost localhost.localdomain n1couchdb.aniu.so
 192.168.0.154 n1couchdb.aniu.so
 
 hostname n1couchdb.aniu.so
@@ -257,7 +257,7 @@ vim +106 src/couch/rebar.config.script
 
 # 还有种方式就是做软链接
 
-ln -s /usr/local/include/js /usr/include/j  # 这种方法尚未尝试，修改完成就可以继续编译啦
+ln -s /usr/local/include/js /usr/include/js  # 这种方法尚未尝试，修改完成就可以继续编译啦
 ```
 > 安装依赖缺失报错
 

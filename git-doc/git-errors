@@ -2,7 +2,6 @@
 
 
 
-
 # [GIT] warning: LF will be replaced by CRLF
 
 git config --global core.autocrlf false
@@ -12,3 +11,10 @@ git config --global core.autocrlf false
 
 #
 Segmentation fault
+
+#  * branch            master     -> FETCH_HEAD
+fatal: refusing to merge unrelated histories
+git pull origin master --allow-unrelated-histories
+
+#
+error: The following untracked working tree files would be overwritten by merge:
