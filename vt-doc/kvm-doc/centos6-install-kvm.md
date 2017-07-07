@@ -3,6 +3,7 @@
 ## 安装依赖包
 
 ```
+[root@sh-kvm-1 ~]# yum update -y
 [root@sh-kvm-1 ~]# yum -y install qemu-kvm libvirt python-virtinst bridge-utils
 [root@kvm-1 ~]# lsmod | grep kvm
 kvm_intel              54285  0
@@ -24,14 +25,14 @@ Starting system message bus: [ OK ]
 DEVICE=br0
 HWADDR=14:18:77:40:29:D3
 TYPE=Bridge
-UUID=9e8e7f89-cfe9-40c6-b547-a08ee6da0864
+UUID=51bf7a12-30fd-466a-97b1-c24431ebc311
 ONBOOT=yes
-NM_CONTROLLED=yes
 BOOTPROTO=none
 IPADDR=192.168.1.125
 NETMASK=255.255.255.0
 GATEWAY=192.168.1.1
 DNS1=114.114.114.114
+
 # em1网卡配置
 [root@sh-kvm-1 ~]# vi /etc/sysconfig/network-scripts/ifcfg-em1
 # create new
@@ -183,50 +184,17 @@ virt-install \
 
 ## 安装过程中报错解决
 
-> 配置桥接时报错：can't create bridge with the same name，#本次安装故障原因是br0网卡配置是name没有改，导致重启时重启创建em1报错
+> 配置桥接时报错：device em1 does not seem to be present delaying initialization ；device br0 already exists,can't create bridge with the same name，#本次安装故障原因是br0网卡配置是name没有改，导致重启时重启创建em1报错
 
 ```
-# 使用brctl 解决
-[root@sh-kvm-1 ~]# brctl
-Usage: brctl [commands]
-commands:
-	addbr     	<bridge>		add bridge
-	delbr     	<bridge>		delete bridge
-	addif     	<bridge> <device>	add interface to bridge
-	delif     	<bridge> <device>	delete interface from bridge
-	setageing 	<bridge> <time>		set ageing time
-	setbridgeprio	<bridge> <prio>		set bridge priority
-	setfd     	<bridge> <time>		set bridge forward delay
-	sethello  	<bridge> <time>		set hello time
-	setmaxage 	<bridge> <time>		set max message age
-	sethashel 	<bridge> <int>		set hash elasticity
-	sethashmax	<bridge> <int>		set hash max
-	setmclmc  	<bridge> <int>		set multicast last member count
-	setmcrouter	<bridge> <int>		set multicast router
-	setmcsnoop	<bridge> <int>		set multicast snooping
-	setmcsqc  	<bridge> <int>		set multicast startup query count
-	setmclmi  	<bridge> <time>		set multicast last member interval
-	setmcmi   	<bridge> <time>		set multicast membership interval
-	setmcqpi  	<bridge> <time>		set multicast querier interval
-	setmcqi   	<bridge> <time>		set multicast query interval
-	setmcqri  	<bridge> <time>		set multicast query response interval
-	setmcqri  	<bridge> <time>		set multicast startup query interval
-	setpathcost	<bridge> <port> <cost>	set path cost
-	setportprio	<bridge> <port> <prio>	set port priority
-	setportmcrouter	<bridge> <port> <int>	set port multicast router
-	show      	[ <bridge> ]		show a list of bridges
-	showmacs  	<bridge>		show a list of mac addrs
-	showstp   	<bridge>		show bridge stp info
-	stp       	<bridge> {on|off}	turn stp on/off
-# 查看当前网桥配置
-[root@sh-kvm-1 ~]# brctl show
-bridge name	bridge id		STP enabled	interfaces
-br0		8000.1418774029d3	no		em1
-							vnet0
-virbr0		8000.5254006865a2	yes		virbr0-nic
-# 删除刚刚重启网络时创建的网桥
-[root@sh-kvm-1 ~]# brctl delbr br0
-# 修改正确的网桥br0配置，然后重启网络成功，因此配置网桥的时候特别注意
+> 删除/etc/udev/rules.d/70-persistent-net.rules这个文件
+将ifcfg-br0文件中的mac地址和UUID这两行内容注释掉
+
+start_udev
+
+重启服务器，网卡恢复正常。
+如果还是无法启动，查看新产生的/etc/udev/rules.d/70-persistent-net.rules内容,并将网卡的配置文件改成相应的内容
+
 ```
 
 ## 参考教程
