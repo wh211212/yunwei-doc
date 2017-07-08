@@ -23,14 +23,12 @@ Starting system message bus: [ OK ]
 [root@sh-kvm-1 ~]# cp /etc/sysconfig/network-scripts/ifcfg-em1 /etc/sysconfig/network-scripts/ifcfg-br0
 [root@sh-kvm-1 ~]# vi /etc/sysconfig/network-scripts/ifcfg-br0
 DEVICE=br0
-HWADDR=14:18:77:40:29:D3
 TYPE=Bridge
-UUID=51bf7a12-30fd-466a-97b1-c24431ebc311
 ONBOOT=yes
 BOOTPROTO=none
-IPADDR=192.168.1.125
+IPADDR=192.168.0.67
 NETMASK=255.255.255.0
-GATEWAY=192.168.1.1
+GATEWAY=192.168.0.1
 DNS1=114.114.114.114
 
 # em1网卡配置
@@ -40,7 +38,13 @@ DEVICE=em1
 TYPE=Ethernet
 ONBOOT=yes
 BRIDGE=br0
+HWADDR=14:18:77:40:29:D3
+UUID=d2e2265d-f891-4574-918f-c76a4dd6f2eb
+# 配置网桥这里注意
+# bro网卡配置里面不需要em1的mac地址和UUID，em1网卡的mac地址和UUID跟着em1网卡走。 不然重启网络时会报错，报错在文章末尾。
+
 [root@sh-kvm-1 ~]# /etc/rc.d/init.d/network restart
+
 ```
 
 - 查看网桥配置状态
@@ -98,10 +102,10 @@ vnet0     Link encap:Ethernet  HWaddr FE:54:00:08:94:EC
 lvcreate -n kvm-1 -L 20G vg_shkvm1
 # 安装虚拟机
 virt-install \
---name kvm-1 \
---ram 2048 \
---disk path=/dev/vg_shkvm1/kvm-1 \
---vcpus 2 \
+--name kvm-2 \
+--ram 4096 \
+--disk path=/dev/vg_shkvm2/kvm-2 \
+--vcpus 4 \
 --os-type linux \
 --os-variant rhel6 \
 --network bridge=br0 \
@@ -180,6 +184,16 @@ virt-install \
 --console pty,target_type=serial \
 --location 'http://mirrors.aliyun.com/centos/6.9/os/x86_64/' \
 --extra-args 'console=ttyS0,115200n8 serial'
+
+# 使用本地镜像安装
+
+virt-install \
+--name vm1 \
+--ram=2048 \
+--vcpus=2 \
+--disk path=/vm-images/vm1.img,size=15 \
+--cdrom /root/RHEL-7.0-20140507.0-Server-x86_64-dvd1.iso
+
 ```
 
 ## 安装过程中报错解决

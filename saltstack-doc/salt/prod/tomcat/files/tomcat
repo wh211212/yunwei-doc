@@ -1,7 +1,0 @@
-/opt/tomcatas/tomcat-8081/logs/catalina.out {
-      weekly
-      missingok
-      rotate 5
-      compress
-      notifempty
-  }

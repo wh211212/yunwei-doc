@@ -6,21 +6,24 @@ route add 192.168.1.1 mask 255.255.255.0 10.1.1.1
 
 route add 192.168.0.66 mask 255.255.255.255 10.1.1.1
 
+
+route add 192.168.0.8 mask 255.255.255.255 192.168.0.1
+
 route add 10.1.2.1 mask 255.255.255.0 10.1.1.1
 
 route add 192.168.0.247 mask 255.255.255.255 10.1.1.1
 # aniutv
 
 cat > /srv/salt/prod/init/files/upload.txt << EOF
-njdx/myweb/Aniuweb/Zjt/Controller/CompanyController.class.php
-njdx/myweb/Aniuweb/Zjt/View/Company/companynav.html
+wxv2/myweb/Aniuweb/Nkm/View/Ceping/user.html
 EOF
+
 
 # aniucom
 
 cat > /srv/salt/prod/init/files/upload.txt << EOF
-aniucom/myweb/Niuke/Bk/View/Combination/details.html
-aniucom/myweb/Niuke/Bktest/View/Combination/details.html
+njdx/myweb/Aniuweb/Njdx/Controller/IndexController.class.php
+njdx/myweb/Aniuweb/Njdx/View/Index/index.html
 EOF
 
 # neimu
