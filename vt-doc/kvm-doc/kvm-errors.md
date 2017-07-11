@@ -26,3 +26,5 @@ yum -y install policycoreutils-python
 # error: Refusing to undefine while domain managed save image exists
 
 /var/lib/libvirt/qemu(/.*)?     system_u:object_r:qemu_var_run_t:s0
+
+# test
