@@ -49,7 +49,7 @@ virsh start api-2 # 建议使用 start的方式
 virsh create ~/api-2.xml
 ```
 
-- 6、连接虚拟机查看应哦按挂载
+- 6、连接虚拟机查看应按挂载
 
 ```
 virsh console api-2 # 从Dom0上连接到guest

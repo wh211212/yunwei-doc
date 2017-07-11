@@ -25,4 +25,14 @@ echo "192.168.0.99 salt" >> /etc/hosts
 nodegroups:
    group_vms: 'L@sh-kvm-1-1,sh-kvm-1-2,sh-kvm-1-3,sh-kvm-2-1,sh-kvm-2-2'
 
-# 根据ip设置组   
+# 根据ip设置组
+salt -N group_vms cmd.run 'uname -a'
+salt -N group_vms cp.get_file salt://scripts/cmd_track_install.sh /tmp/cmd_track_install.sh
+salt -N group_kvm cp.get_file salt://scripts/optimziation_os.sh /tmp/optimziation_os.sh
+
+#
+salt -N group_vms cmd.run '/bin/bash /tmp/cmd_track_install.sh'
+salt -N group_kvm cmd.run '/bin/bash /tmp/optimziation_os.sh'
+
+# 安装zabbix 监控
+salt -N group_vms state.sls zabbix.zabbix-agent env=prod

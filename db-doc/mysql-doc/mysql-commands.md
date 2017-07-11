@@ -20,10 +20,15 @@ GRANT ALL PRIVILEGES ON *.* TO 'yunwei'@'%' IDENTIFIED BY 'fangbuxia..0';
 
 GRANT ALL PRIVILEGES ON salt.* TO 'salt'@'%' IDENTIFIED BY 'Salt123.';
 
+ GRANT ALL PRIVILEGES ON `tysx_s`.`aniu_salesman_friends` TO 'wangfei'@'192.168.0.%';
+
+
+  GRANT ALL PRIVILEGES ON `tysx_s`.` aniu_message_yx_friends` TO 'wangfei'@'192.168.0.%';
+
 flush privileges;
 
 ## 增删改查
-grant select on testdb.* to common_user@'%' IDENTIFIED BY 'fangbuxia..0';
+grant select on tysx_s.aniu_salesman_friends to common_user@'%' IDENTIFIED BY 'fangbuxia..0';
 grant insert on testdb.* to common_user@'%' IDENTIFIED BY 'fangbuxia..0';
 grant update on testdb.* to common_user@'%' IDENTIFIED BY 'fangbuxia..0';
 grant delete on testdb.* to common_user@'%' IDENTIFIED BY 'fangbuxia..0';
@@ -131,5 +136,3 @@ show processlist;
 show variables like 'wait_timeout';
 
  # mysql导入 备份
-
- 
