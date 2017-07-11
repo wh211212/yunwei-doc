@@ -7,5 +7,6 @@
 yum -y update
 yum -y groups install "GNOME Desktop"
 startx  # 启动桌面环境
-
 ```
+## 从epel源安装
+yum -y install novnc python-websockify numpy

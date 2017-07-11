@@ -113,6 +113,8 @@ virt-install \
 --console pty,target_type=serial \
 --location 'http://mirrors.aliyun.com/centos/6.9/os/x86_64/' \
 --extra-args 'console=ttyS0,115200n8 serial'
+# 使用网易源
+virt-install --name kvm-3 --ram 2048 --disk path=/dev/vg_shkvm1/kvm-3 --vcpus 2 --os-type linux --os-variant rhel6 --network bridge=br0 --graphics none --console pty,target_type=serial --location 'http://mirrors.163.com/centos/6.9/os/x86_64/' --extra-args 'console=ttyS0,115200n8 serial'
 ```
 
 ## 图形安装教程

@@ -72,7 +72,7 @@ docker-compose up -d  # 报错，docker engine版本太低
 - 在另外一台CentOS7 测试下安装测试
 
 ```
-
+docker-compose exec api bin/adduser --admin yunwei@aniu.tv
 ```
 
 - 报错：
