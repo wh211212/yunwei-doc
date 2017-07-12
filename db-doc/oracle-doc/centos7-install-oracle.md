@@ -10,3 +10,5 @@ startx  # 启动桌面环境
 ```
 ## 从epel源安装
 yum -y install novnc python-websockify numpy
+
+openssl req -x509 -nodes -newkey rsa:2048 -keyout /etc/pki/tls/certs/novnc.pem -out /etc/pki/tls/certs/novnc.pem -days 365
