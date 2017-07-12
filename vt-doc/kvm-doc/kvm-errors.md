@@ -28,3 +28,6 @@ yum -y install policycoreutils-python
 /var/lib/libvirt/qemu(/.*)?     system_u:object_r:qemu_var_run_t:s0
 
 # test
+
+
+# Couldn't find device with uuid hbjilq-T2b2-W289-p9T8-1ZZQ-4y6x-gIKnyi

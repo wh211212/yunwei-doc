@@ -15,16 +15,14 @@ route add 192.168.0.247 mask 255.255.255.255 10.1.1.1
 # aniutv
 
 cat > /srv/salt/prod/init/files/upload.txt << EOF
-wxv2/myweb/Aniuweb/Nkm/View/Ceping/user.html
+wxv2/myweb/Aniuweb/Stock/Controller/ApiController.class.php
+wx/Web/Index/Controller/ApiController.class.php
 EOF
-
 
 # aniucom
 
 cat > /srv/salt/prod/init/files/upload.txt << EOF
-wx/Web/Index/View/Expert/article.html
-wx/Web/Index/View/Expert/index.html
-wx/Web/Index/View/Expert/info.html
+njdx/myweb/Aniuweb/Wap/Common/stock.php
 EOF
 
 # neimu
@@ -34,7 +32,6 @@ njdx/myweb/Aniuweb/Publicfile/View/Html/dakaheader.html
 EOF
 
 # tysx
-
 
 # zabbix && saltstack
 
