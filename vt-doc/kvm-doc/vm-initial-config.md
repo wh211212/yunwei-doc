@@ -11,7 +11,7 @@ yum install salt-minion -y
 
 更改hosts文件，/etc/sysconfig/network，及hostname
 
-
+echo "127.0.0.1   localhost localhost.localdomain sh-kvm-3" > /etc/hosts
 echo "192.168.0.99 salt" >> /etc/hosts
 
 
@@ -27,12 +27,12 @@ nodegroups:
 
 # 根据ip设置组
 salt -N group_vms cmd.run 'uname -a'
-salt -N group_vms cp.get_file salt://scripts/cmd_track_install.sh /tmp/cmd_track_install.sh
-salt -N group_kvm cp.get_file salt://scripts/optimziation_os.sh /tmp/optimziation_os.sh
+salt sh-kvm-3 cp.get_file salt://scripts/cmd_track_install.sh /tmp/cmd_track_install.sh
+salt sh-kvm-3 cp.get_file salt://scripts/optimziation_os.sh /tmp/optimziation_os.sh
 
 #
-salt -N group_vms cmd.run '/bin/bash /tmp/cmd_track_install.sh'
-salt -N group_kvm cmd.run '/bin/bash /tmp/optimziation_os.sh'
+salt sh-kvm-3 cmd.run '/bin/bash /tmp/cmd_track_install.sh'
+salt -sh-kvm-3 cmd.run '/bin/bash /tmp/optimziation_os.sh'
 
 # 安装zabbix 监控
-salt -N group_vms state.sls zabbix.zabbix-agent env=prod
+salt sh-kvm-3 state.sls zabbix.zabbix-agent env=prod
