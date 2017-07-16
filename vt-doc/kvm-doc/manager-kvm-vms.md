@@ -216,6 +216,10 @@ virsh shutdown kvm-1
 virsh edit kvm-1  # 直接更改memory
 virsh create /etc/libvirt/demu/kvm-1/xml
 # 之后操作1,2,3步骤增加内存
+
+# 5、vcpu减少，从4核减到2核
+virsh dominfo kvm-7 | grep CPU
+virsh setvcpus kvm-7 2
 ```
 
 - 更改CPU

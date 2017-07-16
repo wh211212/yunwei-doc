@@ -4,9 +4,7 @@
 
 ## 登录虚拟机安装acpid服务，并启动acpid
 
-yum install -y acpid
-/etc/init.d/acpid start
-chkconfig acpid on
+yum install -y acpid && /etc/init.d/acpid start && chkconfig acpid on
 
 > 然后即可通过virsh shutdown vm-name 来正常变比虚拟机
 
