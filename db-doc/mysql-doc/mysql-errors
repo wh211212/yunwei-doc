@@ -15,3 +15,7 @@ show OPEN TABLES where In_use > 0;
 
 3. 查看慢日志
 show variables like "long_query_time";
+
+# ERROR 2002 (HY000): Can't connect to local MySQL server through socket '/var/lib/mysql/mysql.sock' (2)
+
+ln -s /data/mysql/mysql.sock /var/lib/mysql/

@@ -188,6 +188,18 @@ vdb   vdb1
   VG       #PV #LV #SN Attr   VSize  VFree
   VolGroup   2   2   0 wz--n- 69.50g 50.00g
 # 从上面能看出，新添加的 已经加到lvm组中
+# lvcreate -n data -L 19G VolGroup
+  Logical volume "data" created.
+# mkfs.ext4 /dev/VolGroup/data
+# vgs
+  VG       #PV #LV #SN Attr   VSize  VFree
+  VolGroup   2   3   0 wz--n- 39.50g 1020.00m
+# lvextend -L +1020M /dev/VolGroup/data
+# resize2fs /dev/VolGroup/data
+# mkdir /data
+# mount /dev/VolGroup/data /data/
+# 设置开机自动挂载
+# echo "/dev/mapper/VolGroup-data    /data                   ext4    defaults        1 1" >> /etc/fstab
 ```
 
 ## 改变虚拟机的参数
