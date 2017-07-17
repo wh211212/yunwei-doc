@@ -15,8 +15,15 @@ route add 192.168.0.247 mask 255.255.255.255 10.1.1.1
 # aniutv
 
 cat > /srv/salt/prod/init/files/upload.txt << EOF
-wxv2/myweb/Aniuweb/Stock/Controller/ApiController.class.php
-wx/Web/Index/Controller/ApiController.class.php
+njdx/myweb/Aniuweb/Publicfile/View/Html/footerjs.html
+njdx/myweb/Aniuweb/Publicfile/View/Html/header.html
+njdx/myweb/Aniuweb/Zjt/View/Experts/index.html
+njdx/myweb/Aniuweb/Zjt/View/Index/detail.html
+njdx/myweb/Aniuweb/Zjt/View/Index/index.html
+njdx/myweb/Aniuweb/Zjt/View/Index/zjtcommon.html
+njdx/myweb/Public/Common/js/common.js
+njdx/myweb/Public/New/Common
+njdx/myweb/Public/Zjt/css/indexs.css
 EOF
 
 # aniucom
@@ -32,6 +39,8 @@ njdx/myweb/Aniuweb/Publicfile/View/Html/dakaheader.html
 EOF
 
 # tysx
+
+cd /data/gitlab/tv189 && git pull  # tysx更新
 
 # zabbix && saltstack
 
@@ -52,6 +61,3 @@ salt -N group_web state.sls init.clean env=prod
 /usr/bin/ansible pm.aniu.so -m shell -a '/bin/bash /home/wh/script/upgrade-zentao.sh' -o
 
 ssh root@'pm.aniu.so' '/bin/bash /home/wh/script/upgrade-zentao.sh'
-
-
-13524720109 钟小姐

@@ -118,10 +118,10 @@ virt-install \
 virt-install --name kvm-2 --ram 8192 --disk path=/dev/vg_shkvm3/kvm-2 --vcpus 4 --os-type linux --os-variant rhel6 --network bridge=br0 --graphics none --console pty,target_type=serial --location 'http://mirrors.163.com/centos/7/os/x86_64/' --extra-args 'console=ttyS0,115200n8 serial'
 # 4核8G centos7
 virt-install --name kvm-2 --ram 8192 --disk path=/dev/vg_shkvm3/kvm-2 --vcpus 4 --os-type linux --os-variant rhel7 --network bridge=br0 --graphics none --console pty,target_type=serial --location 'http://mirrors.163.com/centos/7/os/x86_64/' --extra-args 'console=ttyS0,115200n8 serial'
-# 8核32G
-virt-install --name kvm-2 --ram 32768 --disk path=/dev/vg_shkvm3/kvm-2 --vcpus 8 --os-type linux --os-variant rhel6 --network bridge=br0 --graphics none --console pty,target_type=serial --location 'http://mirrors.163.com/centos/7/os/x86_64/' --extra-args 'console=ttyS0,115200n8 serial'
-# 8核16G
-virt-install --name kvm-2 --ram 16384 --disk path=/dev/vg_shkvm3/kvm-2 --vcpus 8 --os-type linux --os-variant rhel6 --network bridge=br0 --graphics none --console pty,target_type=serial --location 'http://mirrors.163.com/centos/7/os/x86_64/' --extra-args 'console=ttyS0,115200n8 serial'
+# 4核32G
+virt-install --name kvm-5 --ram 32768 --disk path=/dev/vg_shkvm3/kvm-5 --vcpus 4 --os-type linux --os-variant rhel6 --network bridge=br0 --graphics none --console pty,target_type=serial --location 'http://mirrors.163.com/centos/6.9/os/x86_64/' --extra-args 'console=ttyS0,115200n8 serial'
+# 4核16G
+virt-install --name kvm-3 --ram 16384 --disk path=/dev/vg_shkvm3/kvm-3 --vcpus 4 --os-type linux --os-variant rhel6 --network bridge=br0 --graphics none --console pty,target_type=serial --location 'http://mirrors.163.com/centos/6.9/os/x86_64/' --extra-args 'console=ttyS0,115200n8 serial'
 # 2核8G
 virt-install --name kvm-2 --ram 8192 --disk path=/dev/vg_shkvm3/kvm-2 --vcpus 2 --os-type linux --os-variant rhel6 --network bridge=br0 --graphics none --console pty,target_type=serial --location 'http://mirrors.163.com/centos/7/os/x86_64/' --extra-args 'console=ttyS0,115200n8 serial'
 

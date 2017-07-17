@@ -34,11 +34,11 @@ nodegroups:
 # 根据ip设置组
 salt -N group_vms cmd.run 'uname -a'
 salt sh-kvm-3 cp.get_file salt://scripts/cmd_track_install.sh /tmp/cmd_track_install.sh
-salt sh-kvm-3 cp.get_file salt://scripts/optimziation_os.sh /tmp/optimziation_os.sh
+salt -N group_kvm3 cp.get_file salt://scripts/optimziation_os.sh /tmp/optimziation_os.sh
 
 #
-salt sh-kvm-3 cmd.run '/bin/bash /tmp/cmd_track_install.sh'
-salt -sh-kvm-3 cmd.run '/bin/bash /tmp/optimziation_os.sh'
+salt -N group_kvm3 cmd.run '/bin/bash /tmp/cmd_track_install.sh'
+salt -N group_kvm3 cmd.run '/bin/bash /tmp/optimziation_os.sh'
 
 # 安装zabbix 监控
 salt sh-kvm-3 state.sls zabbix.zabbix-agent env=prod

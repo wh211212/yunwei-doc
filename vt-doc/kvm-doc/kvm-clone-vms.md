@@ -15,9 +15,9 @@ Domain kvm-1 suspended
 ```
 virt-clone \
  --connect qemu:///system \
- --original kvm-1 \
- --name kvm-3 \
- --file /dev/vg_shkvm2/kvm-3
+ --original kvm-3 \
+ --name kvm-4 \
+ --file /dev/vg_shkvm3/kvm-4
 ```
 
  > 此操作大概会持续两到三分钟，依赖于原生vm的大小
@@ -68,4 +68,5 @@ Bringing up interface eth0:  Device eth0 does not seem to be present, delaying i
 
 SUBSYSTEM=="net", ACTION=="add", DRIVERS=="?*", aTTR{address}=="52:54:00:C3:87:E7", ATTR{type}=="1", KERNEL=="eth*", NAME="eth0"
 # 修改完成，完后重启网络，成功
+执行start_udev
 ```
