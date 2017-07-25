@@ -16,7 +16,7 @@ update mysql.user set password=password('root') where User='root';
 
 # 权限设置
 
-GRANT ALL PRIVILEGES ON *.* TO 'yunwei'@'%' IDENTIFIED BY 'fangbuxia..0';
+GRANT ALL PRIVILEGES ON *.* TO 'wanghui'@'192.168.103.%' IDENTIFIED BY 'fangbuxia..0';
 
 GRANT ALL PRIVILEGES ON salt.* TO 'salt'@'%' IDENTIFIED BY 'Salt123.';
 

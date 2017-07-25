@@ -29,3 +29,5 @@ yum -y install policycoreutils-python
 
 
 # Couldn't find device with uuid hbjilq-T2b2-W289-p9T8-1ZZQ-4y6x-gIKnyi
+
+# Setting up Logical Volume Management:   Couldn't find device with uuid lvHEVT-1BZ3-4CAZ-tYXe-e1g1-nbqK-4CHFlk.
