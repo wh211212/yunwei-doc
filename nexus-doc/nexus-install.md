@@ -61,3 +61,21 @@ Return code is: 405, ReasonPhrase: PUT
     <url>http://nexus.aniu.so/repository/maven-snapshots</url>
   </snapshotRepository>
 </distributionManagement>
+
+
+
+
+	<repositories>
+		<repository>
+			<id>repo1-maven</id>
+			<url>http://repo1.maven.org/maven2</url>
+		</repository>
+		<repository>
+			<id>mvnrepository</id>
+			<url>http://mvnrepository.com/artifact</url>
+		</repository>
+		<repository>
+			<id>spring-releases</id>
+			<url>https://repo.spring.io/libs-release</url>
+		</repository>
+	</repositories>
