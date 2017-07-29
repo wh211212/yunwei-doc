@@ -63,6 +63,11 @@ Return code is: 405, ReasonPhrase: PUT
 </distributionManagement>
 
 
+change pom.xml by wanghui, change nexus address
+
+
+
+
 
 
 	<repositories>
