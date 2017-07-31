@@ -85,6 +85,14 @@ git clone https://yunwei:anwg123.@gitlab.aniu.so/aniu-web/tv189.git
 
 
 
-git remote add origin https://yunwei:anwg123.@gitlab.aniu.so/aniu-web/tv189.git
+git remote add shen https://yunwei:anwg123.@gitlab.aniu.so/aniu-web/tv189.git
 
 https://gitlab.aniu.so/aniu-web/tv189.git
+
+# 使用https 添加多个远程地址
+cd repodir (当前项目的地址)
+git remote add shen https://yunwei:anwg123.@gitlab.aniu.so/aniu-web/tv189.git  # 换成自己的github账号地址和密码
+
+# 使用ssh
+把本地的公钥加到jithub
+git remote add shen git@gitlab.aniu.so:aniu-project/public-module.git  # 
