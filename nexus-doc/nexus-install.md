@@ -68,8 +68,6 @@ change pom.xml by wanghui, change nexus address
 
 
 
-
-
 	<repositories>
 		<repository>
 			<id>repo1-maven</id>
