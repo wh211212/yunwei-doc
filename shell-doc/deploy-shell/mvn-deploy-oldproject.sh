@@ -9,8 +9,9 @@ Workspace=/var/lib/jenkins/workspace
 Project_home=old-project
 
 # mve test project 
-export JAVA_HOME=/usr/lib/jvm/java-1.7.0-openjdk-1.7.0.141.x86_64
-
-java -version
-
-
+cd $WORKSPACE/tysx-mms-base && mvn clean  -B -e -U -Dmaven.test.skip=true -Dmaven.compile.fork=true -T 4C -am
+cd $WORKSPACE/tysx-mms-db && mvn clean deploy -B -e -U -Dmaven.test.skip=true -Dmaven.compile.fork=true -T 4C -am
+cd $WORKSPACE/tysx-mms-service && mvn clean deploy -B -e -U -Dmaven.test.skip=true -Dmaven.compile.fork=true -T 4C -am
+cd $WORKSPACE/tysx-mms-admin && mvn clean deploy -B -e -U -Dmaven.test.skip=true -Dmaven.compile.fork=true -T 4C -am -Ponline
+cd $WORKSPACE/aniu-api && mvn clean deploy -B -e -U -Dmaven.test.skip=true -Dmaven.compile.fork=true -T 4C -am -Ponline
+cd $WORKSPACE/aniu-admin && mvn clean deploy -B -e -U -Dmaven.test.skip=true -Dmaven.compile.fork=true -T 4C -am -Ponline

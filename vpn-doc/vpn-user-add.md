@@ -42,8 +42,8 @@ BeiaiQ4-ASA-01(config)# username wangyiqiang attributes
 BeiaiQ4-ASA-01(config-username)# vpn-group-policy ROOT
 BeiaiQ4-ASA-01(config-username)# vpn-framed-ip-address 192.168.103.190 255.255$
 #
-   username wangyiqiang password BFOsZ4pq7CXe51qs
-   username wangyiqiang attributes
+   username aimi password BFOsZ4pq7CXe51qs
+   username aimi attributes
     vpn-group-policy ROOT
-    vpn-framed-ip-address 192.168.103.190 255.255.255.255
+    vpn-framed-ip-address 192.168.103.191 255.255.255.255
 #

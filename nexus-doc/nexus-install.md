@@ -65,7 +65,16 @@ Return code is: 405, ReasonPhrase: PUT
 
 change pom.xml by wanghui, change nexus address
 
-
+	<distributionManagement>
+		<repository>
+			<id>releases</id>
+			<url>http://192.168.0.14:8081/nexus/content/repositories/releases</url>
+		</repository>
+		<snapshotRepository>
+			<id>snapshots</id>
+			<url>http://192.168.0.14:8081/nexus/content/repositories/snapshots</url>
+		</snapshotRepository>
+	</distributionManagement>
 
 
 	<repositories>
@@ -84,3 +93,35 @@ change pom.xml by wanghui, change nexus address
 	</repositories>
 
   #
+
+  	<repositories>
+        <repository>
+            <id>aliyun</id>
+            <name>aliyunrepo</name>
+            <url>http://maven.aliyun.com/nexus/content/groups/public</url>
+        </repository>	    
+		<repository>
+			<id>repo1-maven</id>
+			<url>http://repo1.maven.org/maven2</url>
+		</repository>
+		<repository>
+			<id>mvnrepository</id>
+			<url>http://mvnrepository.com/artifact</url>
+		</repository>
+		<repository>
+			<id>spring-releases</id>
+			<url>https://repo.spring.io/libs-release</url>
+		</repository>
+		<repository>
+            <id>nexus</id>
+            <name>aniu repo</name>
+            <url>http://nexus.aniu.so/repository/maven-releases</url>
+        </repository>
+	</repositories>
+
+
+
+
+
+
+  
