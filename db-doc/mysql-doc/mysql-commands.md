@@ -20,10 +20,10 @@ GRANT ALL PRIVILEGES ON *.* TO 'wanghui'@'192.168.103.%' IDENTIFIED BY 'fangbuxi
 
 GRANT ALL PRIVILEGES ON salt.* TO 'salt'@'%' IDENTIFIED BY 'Salt123.';
 
- GRANT ALL PRIVILEGES ON `tysx_s`.`aniu_salesman_friends` TO 'wangfei'@'192.168.0.%';
 
+GRANT SELECT ON aniu_crm.* TO 'wuchenming'@'192.168.103.%' IDENTIFIED BY 'ecILUowBKxFZouoDFBb1';
 
-  GRANT ALL PRIVILEGES ON `tysx_s`.` aniu_message_yx_friends` TO 'wangfei'@'192.168.0.%';
+ GRANT ALL PRIVILEGES ON `tysx_s`.` aniu_message_yx_friends` TO 'wangfei'@'192.168.0.%';
 
 flush privileges;
 

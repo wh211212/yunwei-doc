@@ -15,4 +15,4 @@ cd $WORKSPACE/aniu-crm-dao && mvn clean deploy
 cd $WORKSPACE/aniu-crm-service && mvn clean deploy
 cd $WORKSPACE/aniu-crm-core && mvn clean deploy
 cd $WORKSPACE/aniu-crm-api && mvn clean deploy -Ponline
-cd $WORKSPACE/aniu-crm-admin && mvn clean deploy -Ponline 
+cd $WORKSPACE/aniu-crm-admin && mvn clean deploy -Ponline
