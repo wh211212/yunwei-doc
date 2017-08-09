@@ -1,20 +1,21 @@
 #!/bin/bash
-#---------------------------------------
-# Functions: deploy java project 
+#---------------------------------
+# Functions: deploy java project
 # Changelog:
 # 2017-08-01 wanghui initial
-#---------------------------------------
+#---------------------------------
 # define variables
-Workspace=/var/lib/jenkins/workspace
-Project_home=aniu-nkm
-
-# mve test & deploy nkm project
-cd $WORKSPACE/aniu-nkm-module && mvn clean deploy -B -e -U -Dmaven.test.skip=true -Dmaven.compile.fork=true -T 4C -am -Ponline || exit 0 
-cd $WORKSPACE/aniu-nkm-dao && mvn clean deploy -B -e -U -Dmaven.test.skip=true -Dmaven.compile.fork=true -T 4C -am -Ponline || exit 0
-cd $WORKSPACE/aniu-nkm-service && mvn clean deploy -B -e -U -Dmaven.test.skip=true -Dmaven.compile.fork=true -T 4C -am -Ponline || exit 0
-cd $WORKSPACE/aniu-nkm-core && mvn clean deploy -B -e -U -Dmaven.test.skip=true -Dmaven.compile.fork=true -T 4C -am -Ponline || exit 0
-cd $WORKSPACE/aniu-nkm-redis && mvn clean deploy -B -e -U -Dmaven.test.skip=true -Dmaven.compile.fork=true -T 4C -am -Ponline || exit 0
-cd $WORKSPACE/aniu-nkm-factory && mvn clean deploy -B -e -U -Dmaven.test.skip=true -Dmaven.compile.fork=true -T 4C -am -Ponline || exit 0
-cd $WORKSPACE/aniu-nkm-api && mvn clean deploy -B -e -U -Dmaven.test.skip=true -Dmaven.compile.fork=true -T 4C -am -Ponline || exit 0
-cd $WORKSPACE/aniu-nkm-admin && mvn clean deploy -B -e -U -Dmaven.test.skip=true -Dmaven.compile.fork=true -T 4C -am -Ponline || exit 0
-cd $WORKSPACE/aniu-nkm-api-task && mvn clean deploy -B -e -U -Dmaven.test.skip=true -Dmaven.compile.fork=true -T 4C -am -Ponline || exit 0
+Project_name=aniu-nkm
+Workspace=/var/lib/jenkins/workspace/${Project_name}
+# mve test project
+Cmd1='mvn clean deploy -B -e -U -Dmaven.test.skip=true -Dmaven.compile.fork=true -T 4C -q'
+Cmd2='mvn clean deploy -B -e -U -Dmaven.test.skip=true -Dmaven.compile.fork=true -T 4C -Ponline'
+cd $Workspace/aniu-nkm-module && $Cmd1 || exit 1
+cd ${Workspace}/aniu-nkm-dao && ${Cmd1} || exit 1
+cd ${Workspace}/aniu-nkm-service && ${Cmd1} || exit 1
+cd ${Workspace}/aniu-nkm-core && ${Cmd1} || exit 1
+cd ${Workspace}/aniu-nkm-redis && ${Cmd1} || exit 1
+cd ${Workspace}/aniu-nkm-factory && ${Cmd1} || exit 1
+cd ${Workspace}/aniu-nkm-admin && ${Cmd2} || exit 2
+cd ${Workspace}/aniu-nkm-api && ${Cmd2} || exit 2
+cd ${Workspace}/aniu-nkm-api-task&& ${Cmd2} || exit 2

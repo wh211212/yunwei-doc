@@ -1,18 +1,19 @@
 #!/bin/bash
-#---------------------------------------
-# Functions: deploy java project 
+#---------------------------------
+# Functions: deploy java project
 # Changelog:
 # 2017-08-01 wanghui initial
-#---------------------------------------
+#---------------------------------
 # define variables
-Workspace=/var/lib/jenkins/workspace
-Project_home=old-project
-
+Project_name=aniu-nkm
+Workspace=/var/lib/jenkins/workspace/${Project_name}
 # mve test project
-cd $WORKSPACE/aniu-crm-dependency && mvn clean deploy
-cd $WORKSPACE/aniu-crm-module && mvn clean deploy  
-cd $WORKSPACE/aniu-crm-dao && mvn clean deploy
-cd $WORKSPACE/aniu-crm-service && mvn clean deploy
-cd $WORKSPACE/aniu-crm-core && mvn clean deploy
-cd $WORKSPACE/aniu-crm-api && mvn clean deploy -Ponline
-cd $WORKSPACE/aniu-crm-admin && mvn clean deploy -Ponline
+Cmd1='mvn clean deploy -B -e -U -Dmaven.test.skip=true -Dmaven.compile.fork=true -T 4C -q'
+Cmd2='mvn clean deploy -B -e -U -Dmaven.test.skip=true -Dmaven.compile.fork=true -T 4C -Ponline'
+cd $Workspace/aniu-crm-dependency && $Cmd1 || exit 1
+cd ${Workspace}/aniu-crm-module && ${Cmd1} || exit 1
+cd ${Workspace}/aniu-crm-dao && ${Cmd1} || exit 1
+cd ${Workspace}/aniu-crm-service && ${Cmd1} || exit 1
+cd ${Workspace}/aniu-crm-core && ${Cmd1} || exit 1
+cd ${Workspace}/aniu-crm-api && ${Cmd1} || exit 2
+cd ${Workspace}/aniu-crm-admin && ${Cmd2} || exit 2

@@ -1,17 +1,18 @@
 #!/bin/bash
-#---------------------------------------
-# Functions: deploy java project 
+#---------------------------------
+# Functions: deploy java project
 # Changelog:
 # 2017-08-01 wanghui initial
-#---------------------------------------
+#---------------------------------
 # define variables
-Workspace=/var/lib/jenkins/workspace
-Project_home=old-project
-
-# mve test project 
-cd $WORKSPACE/tysx-mms-base && mvn clean  -B -e -U -Dmaven.test.skip=true -Dmaven.compile.fork=true -T 4C -am
-cd $WORKSPACE/tysx-mms-db && mvn clean deploy -B -e -U -Dmaven.test.skip=true -Dmaven.compile.fork=true -T 4C -am
-cd $WORKSPACE/tysx-mms-service && mvn clean deploy -B -e -U -Dmaven.test.skip=true -Dmaven.compile.fork=true -T 4C -am
-cd $WORKSPACE/tysx-mms-admin && mvn clean deploy -B -e -U -Dmaven.test.skip=true -Dmaven.compile.fork=true -T 4C -am -Ponline
-cd $WORKSPACE/aniu-api && mvn clean deploy -B -e -U -Dmaven.test.skip=true -Dmaven.compile.fork=true -T 4C -am -Ponline
-cd $WORKSPACE/aniu-admin && mvn clean deploy -B -e -U -Dmaven.test.skip=true -Dmaven.compile.fork=true -T 4C -am -Ponline
+Project_name=old-project
+Workspace=/var/lib/jenkins/workspace/${Project_name}
+# mve test project
+Cmd1='mvn clean deploy -B -e -U -Dmaven.test.skip=true -q'
+Cmd2='mvn clean deploy -B -e -U -Dmaven.test.skip=true'
+cd ${Workspace}/tysx-mms-base && ${Cmd1} || exit 1
+cd ${Workspace}/tysx-mms-db && ${Cmd1} || exit 1
+cd ${Workspace}/tysx-mms-service && ${Cmd1} || exit 1
+cd ${Workspace}/tysx-mms-admin && ${Cmd2} || exit 1
+cd ${Workspace}/aniu-api && ${Cmd2} || exit 1
+cd ${Workspace}aniu-admin && ${Cmd2} || exit 1

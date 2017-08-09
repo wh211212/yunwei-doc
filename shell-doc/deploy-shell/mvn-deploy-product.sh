@@ -1,15 +1,18 @@
-#---------------------------------------
-# Functions: deploy java project 
+#!/bin/bash
+#---------------------------------
+# Functions: deploy java project
 # Changelog:
 # 2017-08-01 wanghui initial
-#---------------------------------------
+#---------------------------------
 # define variables
-Workspace=/var/lib/jenkins/workspace
-Project_home=aniu-product
-
-# mve test & deploy income project
-cd $WORKSPACE/aniu-product-dao && mvn clean deploy -B -e -U -Dmaven.test.skip=true -Dmaven.compile.fork=true -T 4C -am -Ponline || exit 0 
-cd $WORKSPACE/aniu-product-service && mvn clean deploy -B -e -U -Dmaven.test.skip=true -Dmaven.compile.fork=true -T 4C -am -Ponline || exit 0
-cd $WORKSPACE/aniu-product-core && mvn clean deploy -B -e -U -Dmaven.test.skip=true -Dmaven.compile.fork=true -T 4C -am -Ponline || exit 0
-cd $WORKSPACE/aniu-product-api && mvn clean deploy -B -e -U -Dmaven.test.skip=true -Dmaven.compile.fork=true -T 4C -am -Ponline || exit 0
-cd $WORKSPACE/aniu-service-product && mvn clean deploy -B -e -U -Dmaven.test.skip=true -Dmaven.compile.fork=true -T 4C -am -Ponline || exit 0
+Project_name=aniu-nkm
+Workspace=/var/lib/jenkins/workspace/${Project_name}
+# mve test project
+Cmd1='mvn clean deploy -B -e -U -Dmaven.test.skip=true -Dmaven.compile.fork=true -T 4C -q'
+Cmd2='mvn clean deploy -B -e -U -Dmaven.test.skip=true -Dmaven.compile.fork=true -T 4C -Ponline'
+# execute shell
+cd ${Workspace}/aniu-product-dao && ${Cmd1} || exit 1
+cd ${Workspace}/aniu-product-service && ${Cmd1} || exit 1
+cd ${Workspace}/aniu-product-core && ${Cmd1} || exit 1
+cd ${Workspace}/aniu-product-api && ${Cmd2} || exit 1
+cd ${Workspace}/aniu-service-product && ${Cmd2} || exit 1
