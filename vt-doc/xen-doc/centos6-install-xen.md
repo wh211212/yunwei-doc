@@ -60,11 +60,9 @@ echo "/dev/mapper/VolGroup-data    /data                   ext4    defaults     
 #!/bin/bash
 # functions: secure_config
 
-
 virt-install -d -n api-1 -r 4096 --vcpus=4 --prompt --disk /dev/vg_xen2/api-1 --nographics -p -l http://mirrors.aliyun.com/centos/6.9/os/x86_64/ --extra-args="text console=com1 utf8 console=hvc0"
 
 virt-install -d -n crm-cas-admin -r 8192 --vcpus=4 --prompt --disk /dev/vg_xen1/crm-cas-admin --nographics -p -l http://mirrors.aliyun.com/centos/6.8/os/x86_64/ --extra-args="text console=com1 utf8 console=hvc0"
-
 
 # virt-clone
 virt-clone --original elk-stack-1 --name elk-stack-2 --file /dev/vg_xenold2/elk-stack-2

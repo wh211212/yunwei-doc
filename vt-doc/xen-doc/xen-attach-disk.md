@@ -31,7 +31,7 @@ virsh dumpxml api-2 > ~/api-2.xml
   <target dev='xvda' bus='xen'/>
 </disk>
 <disk type='block' device='disk'>
-  <source dev='/dev/vg_xen3/api2-data'/>
+  <source dev='/dev/vg_xen1/nexus-data'/>
   <target dev='xvdb' bus='xen'/>
 </disk>
 # 注意dev的名字要修改 #
@@ -46,7 +46,7 @@ virsh shutdown api-2
 # 使用virsh重新加载虚拟机配置文件
 virsh start api-2 # 建议使用 start的方式
 # 或者使用create
-virsh create ~/api-2.xml
+virsh create ~/api-2.xml  # 亲测可用
 ```
 
 - 6、连接虚拟机查看应按挂载
@@ -107,3 +107,27 @@ api-3                                        5  4096     4     -b----       0.2
 libvirtd 服务无缘无故停掉。
 
 xl list 查看虚拟机状态不正常
+
+# 加到lvm组中
+
+挂载lvm
+mkfs.ext4 /dev/xvdb1
+pvcreate /dev/xvdb1
+vgextend VolGroup /dev/xvdb1
+lvcreate -n data -L 119G VolGroup
+mkdir /data
+mkfs.ext4 /dev/VolGroup/data
+mount /dev/VolGroup/data  /data/
+/dev/mapper/VolGroup-data    /data                   ext4    defaults        1 1
+
+# 扩大lvm卷（root）
+[root@jenkins ~]# lvextend -l +100%FREE /dev/mapper/VolGroup-lv_root
+[root@jenkins ~]# resize2fs /dev/mapper/VolGroup-lv_root
+[root@jenkins ~]# df -h
+Filesystem            Size  Used Avail Use% Mounted on
+/dev/mapper/VolGroup-lv_root
+                      103G   40G   58G  41% /
+tmpfs                 4.9G   12K  4.9G   1% /dev/shm
+/dev/xvda1            477M  153M  299M  34% /boot
+
+> 扩容成功
