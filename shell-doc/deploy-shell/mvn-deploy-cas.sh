@@ -5,6 +5,12 @@
 # 2017-08-01 wanghui initial
 #---------------------------------------
 # define variables
+export JAVA_HOME=/var/lib/jenkins/tools/hudson.model.JDK/SE_JDK_1.7
+export PATH=$JAVA_HOME/bin:$PATH
+export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
+echo $JAVA_HOME
+java --version
+
 Workspace=/var/lib/jenkins/workspace
 Project_home=old-project
 
