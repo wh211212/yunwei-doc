@@ -1,7 +1,6 @@
 # CentOS7 安装KVM
 
 
-
 ## 安装依赖包
 yum -y update
 [root@aniu ~]# yum -y install qemu-kvm qemu-img

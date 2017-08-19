@@ -10,3 +10,11 @@ object network obj-192.168.0.96
 host 192.168.0.96
 access-list From-dianxin extended permit tcp any host 192.168.0.96 eq https
 nat (inside,dianxin) source static obj-192.168.0.96 obj-175.102.133.86 service tcp-443 tcp-443
+
+
+jenkins 用https
+object network obj-192.168.0.99
+host 192.168.0.99
+access-list From-dianxin extended permit tcp any host 192.168.0.99 eq https
+nat (inside,dianxin) source static obj-192.168.0.99 obj-175.102.133.78 service tcp-443 tcp-443
+
