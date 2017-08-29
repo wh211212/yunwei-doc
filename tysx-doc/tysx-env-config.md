@@ -27,6 +27,7 @@ yum -y install rsync wget vim openssh-clients iftop iotop sysstat  lsof telnet t
 5、
 
 
-
-
 # tysx-prod-2
+
+
+
