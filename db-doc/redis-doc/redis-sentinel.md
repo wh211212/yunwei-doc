@@ -326,3 +326,32 @@ rename-command FLUSHALL ""
 rename-command FLUSHDB ""
 rename-command KEYS ""
 ```
+
+## redis sentinel 单实例多台服务器部署
+# redis
+192.168.0.105 6380 
+192.168.0.106 6380 
+192.168.0.60 6380
+
+# sentinel  
+192.168.0.105 26380
+192.168.0.106 26380
+192.168.0.60 26380
+# 
+[root@sh-kvm-3-5 redis]# cat sentinel.conf 
+protected-mode no
+bind 0.0.0.0
+port 26380
+dir "/data/redis"
+#sentinel myid e9795ca564b3df5d9e05a26da15a12b561e59f1e
+sentinel myid e6547e57cb4b43ed8b0b6f0294ae3334de052bba
+#sentinel auth-pass mymaster anwg123.
+sentinel monitor mymaster 192.168.0.60 6380 2
+sentinel config-epoch mymaster 4
+sentinel leader-epoch mymaster 4
+sentinel known-slave mymaster 192.168.0.105 6380
+daemonize yes
+logfile "/var/log/sentinel_6380.log"
+
+注意 配置文件不要 sentinel myid e6547e57cb4b43ed8b0b6f0294ae3334de052bba 这种参数
+

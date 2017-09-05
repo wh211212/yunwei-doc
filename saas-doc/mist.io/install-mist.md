@@ -72,7 +72,20 @@ docker-compose up -d  # 报错，docker engine版本太低
 - 在另外一台CentOS7 测试下安装测试
 
 ```
-docker-compose exec api bin/adduser --admin yunwei@aniu.tv
+[root@aniu-k8s mist.io]# docker-compose exec api sh
+/mist.api # ./bin/adduser --admin yunwei@aniu.tv
+MIST_API_DIR is /mist.api
+Couldn't find core config in /mist/core/config.py
+Reading settings from environmental variables.
+Reading local settings from /etc/mist.io/settings.py
+2017-09-01 16:28:12 INFO MainThread __init__ - mongo_connect: Attempting to connect to mist2 at mongodb:27017...
+2017-09-01 16:28:12 INFO MainThread __init__ - mongo_connect: Connected...
+Arguments: Namespace(admin=True, docker_cloud=False, email='yunwei@aniu.tv', org=None, password=False)
+Will create user
+Password: 
+Setting user password.
+Setting user to admin.
+Will create new org
 ```
 
 - 报错：

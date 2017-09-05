@@ -15,14 +15,15 @@ username 用户名 attributes
 
 username 用户名 pass 密码
 
-username huangjianhang pass 123qwe!@#
+username caven pass eoswkdtlstjddlf
+
 
 # zfund vpn
 
-username huangjianhang password RFz1wu4jz4U3CBOC
-username huangjianhang attributes
+username huizi password ogSNt6rQNSbGyOLr
+username huizi attributes
  vpn-group-policy ROOT
- vpn-framed-ip-address 192.168.103.186 255.255.255.255
+ vpn-framed-ip-address 192.168.103.193 255.255.255.255
 
  username yangbo password hkUsF7Z1Aq2A2ubs
  username yangbo attributes

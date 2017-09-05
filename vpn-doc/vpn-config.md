@@ -214,3 +214,6 @@ tunnel-group ROOT ipsec-attributes
 
 
  #
+
+username helei password e5s12Jk066bYVXpJ encrypted
+username helei attributes

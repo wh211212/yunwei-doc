@@ -8,6 +8,8 @@ https://www.sonatype.com/oss-thank-you-tar.gz
 
 tar xvzf nexus-3.3.0-01-unix.tar.gz -C /opt
 
+# 添加环境变量
+vim ~/.bashrc 
 NEXUS_HOME="/opt/nexus"
 run_as_user="nexus"
 

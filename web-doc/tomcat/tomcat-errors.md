@@ -10,5 +10,20 @@ java.lang.NoSuchMethodError: redis.clients.jedis.Jedis.psetex([BJ[B)Ljava/lang/S
 - Failed to create a session, as response has been committed. Unable to store SecurityContext
 
 
+- Tomcat8启动报there was insufficient free space available after evicting expired cache entries - consider increasing the maximum size of the cache
+
+tomcat 中context.xml 配置文件加入
+<Resources cachingAllowed="true" cacheMaxSize="100000" />
 
 
+
+# Tomcat启动/关闭时的几个问题
+
+tomcat.util.scan.StandardJarScanFilter.jarsToSkip=*.jar
+
+
+consider increasing the maximum size of the cache
+
+<Resources
+    cachingAllowed="false"
+/>

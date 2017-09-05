@@ -92,7 +92,7 @@ Syncing disks.
 ```
 
 - 挂载lvm 到data目录
-
+执行 vgreduce --removemissing VolGroup即可修复
 ```
 mkfs.ext4 /dev/vdb1
 pvcreate /dev/vdb1
