@@ -48,3 +48,36 @@ BeiaiQ4-ASA-01(config-username)# vpn-framed-ip-address 192.168.103.190 255.255$
     vpn-group-policy ROOT
     vpn-framed-ip-address 192.168.103.191 255.255.255.255
 #
+   username aimi password BFOsZ4pq7CXe51qsa
+   username aimi attributes
+    vpn-group-policy ROOT
+    vpn-framed-ip-address 192.168.103.194 255.255.255.255
+    
+   username aimi password hkUsF7Z1Aq2A2ubsa
+   username aimi attributes
+    vpn-group-policy ROOT
+    vpn-framed-ip-address 192.168.103.195 255.255.255.255
+    
+   username sunyanhai password abUsF7Z1Aq2A2ubsa
+   username sunyanhai attributes
+    vpn-group-policy ROOT
+    vpn-framed-ip-address 192.168.103.194 255.255.255.255
+    
+   username qiaofei password P71q2nKoI6iflGGo
+   username qiaofei attributes
+    vpn-group-policy ROOT
+    vpn-framed-ip-address 192.168.103.195 255.255.255.255
+    
+   username yehao password JNim6TBQORDtLGn3
+   username yehao attributes
+    vpn-group-policy ROOT
+    vpn-framed-ip-address 192.168.103.196 255.255.255.255
+   username sunming password GMsGCVgeNw6Qj09e
+   username sunming attributes
+    vpn-group-policy ROOT
+    vpn-framed-ip-address 192.168.103.197 255.255.255.255   
+    
+   username guojia password CsDiNYB32uxXfldF
+   username guojia attributes
+    vpn-group-policy ROOT
+    vpn-framed-ip-address 192.168.103.198 255.255.255.255              
