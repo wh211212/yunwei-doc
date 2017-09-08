@@ -7,7 +7,7 @@ show grants for 'wanghui'@'%';
 
 # 重置密码MySQL5.6
 
-update mysql.user set password=password('fangbuxia..0') where user='wanghui';
+update mysql.user set password=password('tlstjddlffldmstnr') where user='crshen';
 flush privileges;
 
 # 重置密码MySQL5.7
