@@ -1,0 +1,45 @@
+#
+{
+    "job": {
+        "content": [
+            {
+                "reader": {
+                    "name": "mysqlreader",
+                    "parameter": {
+                        "username": "aniu",
+                        "password": "anwg123.",
+                        "column": ["id","age","name"],
+                        "connection": [
+                            {
+                                "table": [
+                                    "test_table"
+                                ],
+                                "jdbcUrl": [
+                                    "jdbc:mysql://127.0.0.1:3306/test"
+                                ]
+                            }
+                        ]
+                    }
+                },
+                "writer": {
+                    "name": "odpswriter",
+                    "parameter": {
+                        "accessId": "****",
+                        "accessKey": "****",
+                        "column": ["id","age","name"],
+                        "odpsServer": "http://service.odps.aliyun.com/api",
+                        "partition": "pt='datax_test'",
+                        "project": "datax_opensource",
+                        "table": "datax_opensource_test",
+                        "truncate": true
+                    }
+                }
+            }
+        ],
+        "setting": {
+            "speed": {
+                "channel": 1
+            }
+        }
+    }
+}

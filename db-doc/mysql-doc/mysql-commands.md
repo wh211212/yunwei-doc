@@ -18,14 +18,14 @@ update mysql.user set password=password('root') where User='root';
 
 GRANT ALL PRIVILEGES ON *.* TO 'aniu_crm_admin'@'192.168.0.%';
 
-GRANT ALL PRIVILEGES ON `aniu_crm`.* TO 'aniu_crm_admin'@'192.168.0.%' IDENTIFIED BY 'cgui2gty9XiKXKsN';
+GRANT ALL PRIVILEGES ON `tysx_s`.* TO 'wanglei'@'192.168.103.%' IDENTIFIED BY 'cgui2gty9XiKXKsN';
 
 GRANT ALL PRIVILEGES ON salt.* TO 'salt'@'%' IDENTIFIED BY 'Salt123.';
 
 
 GRANT SELECT ON aniu_crm.* TO 'wuchenming'@'192.168.103.%' IDENTIFIED BY 'cgui2gty9XiKXKsN';
 
- GRANT ALL PRIVILEGES ON `tysx_s`.` aniu_message_yx_friends` TO 'wangfei'@'192.168.0.%';
+GRANT ALL PRIVILEGES ON `tysx_s`.`aniu_custom_service_phone` TO 'wangfei'@'192.168.0.%';
 
 flush privileges;
 
