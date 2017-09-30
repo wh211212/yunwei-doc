@@ -44,8 +44,11 @@ virsh dumpxml api-2 > ~/api-2.xml
 xl shutodwn api-2
 virsh shutdown api-2
 # 使用virsh重新加载虚拟机配置文件
+
 virsh start api-2 # 建议使用 start的方式
 # 或者使用create
+mv /etc/libvirt/libxl/apiserver1.xml /tmp/
+
 virsh create ~/api-2.xml  # 亲测可用
 ```
 
@@ -114,11 +117,12 @@ xl list 查看虚拟机状态不正常
 mkfs.ext4 /dev/xvdb1
 pvcreate /dev/xvdb1
 vgextend VolGroup /dev/xvdb1
-lvcreate -n data -L 119G VolGroup
+lvcreate -n data -L 49G VolGroup
 mkdir /data
 mkfs.ext4 /dev/VolGroup/data
 mount /dev/VolGroup/data  /data/
-/dev/mapper/VolGroup-data    /data                   ext4    defaults        1 1
+
+echo "/dev/mapper/VolGroup-data    /data                   ext4    defaults        1 1" >> /ets/fstab
 
 # 扩大lvm卷（root）
 [root@jenkins ~]# lvextend -l +100%FREE /dev/mapper/VolGroup-lv_root

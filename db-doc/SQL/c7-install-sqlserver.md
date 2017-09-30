@@ -105,17 +105,3 @@ SELECT Name from sys.Databases
 ```
 GO
 ```
-
-
-
-
-
-
-- 安装 SQL Server 和 CentOS7 上创建数据库
-
-> 本文适用于：
-
-
-  [1]: /img/bVUYnM
-  [2]: /img/bVUYoj
-  [3]: /img/bVUYq5

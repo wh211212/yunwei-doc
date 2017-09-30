@@ -102,20 +102,32 @@ em1: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
 lvcreate -n api-1 -L 20G vg_kvm1
 # 安装虚拟机
 virt-install \
---name api-1 \
---ram 4096 \
---disk path=/dev/vg_kvm1/api-1 \
---vcpus 4 \
+--name aniu-saas-1 \
+--ram 12288 \
+--disk path=/dev/cl/aniu-saas-1 \
+--vcpus 8 \
 --os-type linux \
---os-variant rhel6 \
+--os-variant rhel7 \
 --network bridge=br0 \
 --graphics none \
 --console pty,target_type=serial \
---location 'http://mirrors.aliyun.com/centos/6.9/os/x86_64/' \
+--location 'http://mirrors.aliyun.com/centos/7/os/x86_64/' \
 --extra-args 'console=ttyS0,115200n8 serial'
 #
 virt-install -d --name api-1 --ram 4096 --disk path=/dev/vg_kvm1/api-1 --vcpus 4 --os-type linux --os-variant rhel7 --network bridge=br0 --graphics none --console pty,target_type=serial --location 'https://mirrors.aliyun.com/centos/7/os/x86_64/' --extra-args 'console=ttyS0,115200n8 serial'
 ```
+
+
+
+
+
+virt-install -d --name=aniu-saas-1 --disk path=/dev/cl/aniu-saas-1 --graphics none --vcpu=8 --ram=12288 --location=/media/CentOS-7-x86_64-Minimal-1611.iso --network bridge=br0
+
+
+virt-install -d --virt-type=kvm --name=aniu-saas-1  --vcpus=8 --memory=12288 --location=/media/CentOS-7-x86_64-Minimal-1611.iso --disk path=/dev/cl/aniu-saas-1 --network bridge=br0 --graphics none --extra-args='console=ttyS0' --force
+
+
+
 
 # 参考链接：
 

@@ -1,6 +1,0 @@
-# docker use
-
-https://www.docker.com/
-
-#
-docker exec -ti mattermost-preview /bin/bash

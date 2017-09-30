@@ -1,0 +1,50 @@
+# Docker CE for CentOS
+
+> 用于CentOS分发的Docker CE是在基于CentOS分布的Linux环境中安装Docker平台的最佳方式。 简化Docker的配置和设置，并加快您构建和部署基于容器的应用程序的时间，Docker for CentOS发行版提供免费的社区版（CE）和企业版（EE）中的订阅，可以安装在裸机或云基础设施上。
+
+## 特点和优点
+
+轻松安装和设置优化的Docker环境，以便在裸机服务器和虚拟机上进行CentOS分发。 最新的Docker平台版本，具有内置的业务流程（集群和调度），运行时安全性，容器网络和卷，Docker CE可免费下载，并提供社区支持的每月Edge或季度稳定版本。 Docker EE订阅包括季度版本，每个版本有一年的维护和SLA的企业级支持。
+
+## CentOS上安装docker-ce
+
+- Centore 7.3 64位支持Docker CE
+
+> 在CentOS上设置Docker CE存储库
+
+```
+sudo yum install -y yum-utils
+
+sudo yum-config-manager \
+    --add-repo \
+    https://download.docker.com/linux/centos/docker-ce.repo
+
+sudo yum makecache fast
+```
+
+## 在CentOS上安装最新版本的Docker CE
+
+```
+sudo yum -y install docker-ce
+# 启动docker
+sudo systemctl start docker
+```
+
+## 测试Docker CE的安装
+
+```
+sudo docker run hello-world
+```
+
+## 卸载旧版本
+
+> Docker的旧版本被称为docker或docker引擎。如果这些已安装，请卸载它们以及关联的依赖关系。
+
+```
+sudo yum remove docker docker-common container-selinux docker-selinux docker-engine
+```
+
+## 创建并运行第一个app
+
+- 使用Dockerfile定义一个容器
+
