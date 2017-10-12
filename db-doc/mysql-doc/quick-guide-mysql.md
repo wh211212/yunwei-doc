@@ -73,7 +73,7 @@ yum repolist enabled | grep mysql
 sudo grep 'temporary password' /var/log/mysqld.log
 ```
 - 修改MySQL密码
-update mysql.user set authentication_string=password('@Aniuzabbix123.') where user='root' and Host ='127.0.0.1';
+update mysql.user set authentication_string=password('@Aniuproddb123.') where user='root';
 
 > ALTER USER 'root'@'localhost' IDENTIFIED BY 'wQNROtCutvU8yOICpz81';
 > 这里建议使用强密码，MySQL初始密码设置等级较高，一般密码设置通不过验证
@@ -158,7 +158,7 @@ skip-networking
 - change root passwd
 
 ```
-update mysql.user set authentication_string=PASSWORD('wQNROtCutvU8yOICpz81') where user='root' and host='localhost';
+update mysql.user set authentication_string=PASSWORD('@Aniuproddb123.') where user='root' and host='localhost';
 ```
 
 > ERROR 1819 (HY000): Your password does not satisfy the current policy requirements

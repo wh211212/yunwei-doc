@@ -40,3 +40,8 @@ AND
     OR
     COLLATION_NAME != 'utf8_general_ci'
 );
+
+## ERROR 1820 (HY000): You must reset your password using ALTER USER statement before executing this statement.
+
+
+alter user 'root'@'localhost' identified by '@Aniuproddb123.';

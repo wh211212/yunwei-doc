@@ -16,7 +16,7 @@ update mysql.user set password=password('root') where User='root';
 
 # 权限设置
 
-GRANT ALL PRIVILEGES ON *.* TO 'aniu_crm_admin'@'192.168.0.%';
+GRANT ALL PRIVILEGES ON tysx_s.* TO 'aniuapi'@'%' IDENTIFIED BY '@Aniuapi123.';
 
 GRANT ALL PRIVILEGES ON `tysx_s`.* TO 'wanglei'@'192.168.103.%' IDENTIFIED BY 'cgui2gty9XiKXKsN';
 
