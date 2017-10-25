@@ -11,5 +11,9 @@ GRUB_CMDLINE_LINUX="ipv6.disable=1 rd.lvm.lv=centos/root rd.lvm.lv=centos/swap r
 GRUB_DISABLE_RECOVERY="true"
 
 
-#grub2-mkconfig -o /boot/grub2/grub.cfg
+# grub2-mkconfig -o /boot/grub2/grub.cfg
+
+
+
+
 

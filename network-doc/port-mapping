@@ -54,5 +54,19 @@ no nat (inside,dianxin) source static obj-172.16.3.1 obj-175.102.133.72
 
 no nat (inside,dianxin) source static obj-192.168.0.26 obj-175.102.133.72
 
+#
+# aniuapi
+object network obj-192.168.0.180
+host 192.168.0.180
+access-list From-dianxin extended permit tcp any host 192.168.0.180 eq 7081
+object service tcp-7081
+service tcp source eq 7081
+nat (inside,dianxin) source static obj-192.168.0.180 obj-175.102.133.86 service tcp-7081 tcp-7081
+
+
+object network obj-192.168.0.180
+access-list From-dianxin extended permit tcp any host 192.168.0.180 eq www
+nat (inside,dianxin) source static obj-192.168.0.180 obj-175.102.133.86 service tcp-80 tcp-8080
+
 
 

@@ -20,10 +20,10 @@ username caven pass eoswkdtlstjddlf
 
 # zfund vpn
 
-username huizi password ogSNt6rQNSbGyOLr
-username huizi attributes
+username ningyin password gSNt6rQNSbGyOLr
+username ningyin attributes
  vpn-group-policy ROOT
- vpn-framed-ip-address 192.168.103.193 255.255.255.255
+ vpn-framed-ip-address 192.168.103.199 255.255.255.255
 
  username yangbo password hkUsF7Z1Aq2A2ubs
  username yangbo attributes
