@@ -14,6 +14,8 @@ telnet 172.16.2.1
 
 configure terminal
 
+
+
 # 2222
 object service tcp-21212
 service tcp source eq 21212
