@@ -137,6 +137,9 @@ mysqlpump -uzjy -p -h192.168.123.70 --single-transaction --default-character-set
 
 mysqldump -root -p -h127.0.0.1 --default-character-set=utf8 -P3306 --skip-opt --add-drop-table --create-options  --quick --extended-insert --single-transaction -B tysx_s | gzip > /home/wh/tysx_s.sql.gz
 
+mysqldump -uniu -h192.168.1.68 -p3306 -pniu123 algo_quote algo_minutedata > algo_minutedata.sql
+
+
 #mydumper备份vs数据库 三个并发线程备份，消耗时间：300s，gzip的压缩率比LZ4的高
 mydumper -u zjy -p  -h 192.168.123.70 -P 3306 -t 3 -c -l 3600 -s 10000000 -B vs -o /home/zhoujy/vs/
 

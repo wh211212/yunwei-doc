@@ -5,4 +5,7 @@ yum install xfsprogs -y
 mkfs.xfs -f /dev/cl_kvm-centos7/data
 
 # 重新resize分区
-  /dev/mapper/cl_kvm--centos7-var
+ /dev/mapper/cl_kvm--centos7-var
+ 
+# 重载
+xfs_growfs /dev/mapper/cl-data

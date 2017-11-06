@@ -16,7 +16,7 @@ update mysql.user set password=password('root') where User='root';
 
 # 权限设置
 
-GRANT ALL PRIVILEGES ON tysx_s.* TO 'aniuapi'@'%' IDENTIFIED BY '@Aniuapi123.';
+GRANT ALL PRIVILEG ON *.* TO 'caven'@'192.168.103.%' IDENTIFIED BY 'Agui2gty9XiKXKsN';
 
 GRANT ALL PRIVILEGES ON `aniu_message_channel`.* TO 'guodepei'@'192.168.103.%' IDENTIFIED BY 'cgui2gty9XiKXKsN';
 
@@ -32,7 +32,8 @@ GRANT ALL PRIVILEGES ON `tysx_s`.`aniu_custom_service_phone` TO 'wangfei'@'192.1
 flush privileges;
 
 ## 增删改查
-grant select on tysx_s.aniu_salesman_friends to common_user@'%' IDENTIFIED BY 'fangbuxia..0';
+grant select insert update on algo_quote.* to mingjing@'192.168.103.%' IDENTIFIED BY 'Mingjing123.';
+
 grant insert on testdb.* to common_user@'%' IDENTIFIED BY 'fangbuxia..0';
 grant update on testdb.* to common_user@'%' IDENTIFIED BY 'fangbuxia..0';
 grant delete on testdb.* to common_user@'%' IDENTIFIED BY 'fangbuxia..0';
@@ -109,6 +110,8 @@ show grants for dba@localhost;
 grant  all on *.* to   dba@localhost;
 revoke all on *.* from dba@localhost;
 delete from mysql.user where user="walle" and host="192.168.0.%";
+
+delete from mysql.user where user="mingjing" and host="%";
 
 # mysql授权表共有5个表：user、db、host、tables_priv和columns_priv
 
