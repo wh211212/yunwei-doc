@@ -7,7 +7,8 @@ show grants for 'wanghui'@'%';
 
 # 重置密码MySQL5.6
 
-update mysql.user set password=password('algo_quote123.') where user='algo_quote';
+update mysql.user set password=password('Aniudb123.') where user='root@localhost';
+SET PASSWORD FOR 'root'@'localhost' = PASSWORD('Aniudb123.');
 flush privileges;
 
 # 重置密码MySQL5.7
@@ -16,7 +17,7 @@ update mysql.user set password=password('root') where User='root';
 
 # 权限设置
 
-GRANT ALL PRIVILEG ON *.* TO 'caven'@'192.168.103.%' IDENTIFIED BY 'Agui2gty9XiKXKsN';
+GRANT ALL PRIVILEGES ON *.* TO 'hangqing'@'192.168.11.%' IDENTIFIED BY 'Hangqing123.';
 
 GRANT ALL PRIVILEGES ON `aniu_message_channel`.* TO 'guodepei'@'192.168.103.%' IDENTIFIED BY 'cgui2gty9XiKXKsN';
 
@@ -25,7 +26,7 @@ GRANT ALL PRIVILEGES ON salt.* TO 'salt'@'%' IDENTIFIED BY 'Salt123.';
 
 GRANT ALL PRIVILEGES ON *.* TO 'aniuprod'@'%' IDENTIFIED BY 'Aniuprod123';
 
-GRANT SELECT ON aniu_crm.* TO 'wuchenming'@'192.168.103.%' IDENTIFIED BY 'cgui2gty9XiKXKsN';
+GRANT SELECT ON aniu_crm.* TO 'tangxiuwen'@'192.168.103.%' IDENTIFIED BY 'xiuwen123.';
 
 GRANT ALL PRIVILEGES ON `tysx_s`.`aniu_custom_service_phone` TO 'wangfei'@'192.168.0.%';
 
@@ -143,3 +144,12 @@ show processlist;
 show variables like 'wait_timeout';
 
  # mysql导入 备份
+
+
+# 修改字段字符集 
+1 # 修改数据库:  
+2 ALTER DATABASE database_name CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci;  
+3 # 修改表:  
+4 ALTER TABLE table_name CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;  
+5 # 修改表字段:  
+6 ALTER TABLE table_name CHANGE column_name column_name VARCHAR(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
