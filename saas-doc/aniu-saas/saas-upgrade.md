@@ -43,7 +43,7 @@ $ rsync -a tmp/src/ /data/src/
 $ rsync -a tmp/install/ /data/install/
 $ cp backup/install.config install/
 $ cp backup/globals.env install/
-$ cp ports.env install/
+$ cp backup/ports.env install/
 ```
 
 > 如果需要包管理SAAS，需要在install.config，选择一台机器增加bkarchiva模块

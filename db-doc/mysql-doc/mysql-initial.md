@@ -118,7 +118,7 @@ interactive-timeout
 open-files-limit = 8192
 
 
-/usr/bin/mysql_install_db --user=mysql --datadir=/data/mysql --explicit_defaults_for_timestamp
+ 
 
 # zhucong 
 

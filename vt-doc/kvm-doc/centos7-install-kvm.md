@@ -133,3 +133,10 @@ virt-install -d --virt-type=kvm --name=aniu-saas-1  --vcpus=8 --memory=12288 --l
 
 - https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/5/html/Virtualization/sect-Virtualization-Installing_the_virtualization_packages-Installing_KVM_packages_on_an_existing_Red_Hat_Enterprise_Linux_system.html
 - https://www.server-world.info/en/note?os=CentOS_7&p=kvm
+
+# 挂载硬盘
+  825  virsh attach-disk aniu-saas-1 /dev/cl/aniu-saas-1-data vdb --driver qemu --mode shareable
+  826  virsh attach-disk aniu-saas-2 /dev/cl/aniu-saas-2-data vdb --driver qemu --mode shareable
+  827  virsh attach-disk aniu-saas-4 /dev/cl/aniu-saas-3-data vdb --driver qemu --mode shareable
+  828  virsh --help | grep disk
+  829  virsh detach-disk aniu-saas-4 /dev/cl/aniu-saas-3-data vdb --driver qemu --mode shareable

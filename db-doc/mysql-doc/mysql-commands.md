@@ -17,7 +17,9 @@ update mysql.user set password=password('root') where User='root';
 
 # 权限设置
 
-GRANT ALL PRIVILEGES ON *.* TO 'hangqing'@'192.168.11.%' IDENTIFIED BY 'Hangqing123.';
+GRANT ALL PRIVILEGES ON aniu_product.* TO 'nkmdev'@'192.168.103.%' IDENTIFIED BY 'cgui2gty9XiKXKsN';
+
+GRANT ALL PRIVILEGES ON algo_quote.* TO 'algoquote'@'192.168.0.%' IDENTIFIED BY 'yv29NPCeSgMRCAsH';
 
 GRANT ALL PRIVILEGES ON `aniu_message_channel`.* TO 'guodepei'@'192.168.103.%' IDENTIFIED BY 'cgui2gty9XiKXKsN';
 

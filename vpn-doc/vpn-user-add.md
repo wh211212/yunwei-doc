@@ -20,8 +20,8 @@ username caven pass eoswkdtlstjddlf
 
 # zfund vpn
 
-username ningyin password gSNt6rQNSbGyOLr
-username ningyin attributes
+username xiangyonghong password gSNt6rQNSbGyOLr
+username xiangyonghong attributes
  vpn-group-policy ROOT
  vpn-framed-ip-address 192.168.103.199 255.255.255.255
 

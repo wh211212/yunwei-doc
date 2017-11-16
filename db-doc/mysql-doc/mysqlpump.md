@@ -137,7 +137,7 @@ mysqlpump -uzjy -p -h192.168.123.70 --single-transaction --default-character-set
 
 mysqldump -root -p -h127.0.0.1 --default-character-set=utf8 -P3306 --skip-opt --add-drop-table --create-options  --quick --extended-insert --single-transaction -B tysx_s | gzip > /home/wh/tysx_s.sql.gz
 
-mysqldump -uniu -h192.168.1.68 -p3306 -pniu123 algo_quote algo_minutedata > algo_minutedata.sql
+mysqldump -uniu -h192.168.1.68 -p3306 -pniu123 --databases algo_quote  > algo_quote.sql
 
 
 #mydumper备份vs数据库 三个并发线程备份，消耗时间：300s，gzip的压缩率比LZ4的高
@@ -151,3 +151,17 @@ mydumper -u zjy -p  -h 192.168.123.70 -P 3306 -t 5 -c -r 300000 -l 3600 -s 10000
 总结：
 
 mysqldump和mysqlpump的使用方法绝大部分一致，mysqlpump新的参数文章上已经标明，到底用那种工具备份数据库这个要在具体的环境下才能做出选择，有些时候可能用物理备份更好（xtrabackup），总之根据需要进行测试，最后再决定使用哪种备份工具进行备份。
+
+#
+
+B：备份tempdb.dict__major表
+    1.
+        mysqldump --host=127.0.0.1 --port=3306 --user=dumper --password=dumper123 --quick tempdb dict__major >/tmp/tempdb.dict__major.sql
+    
+C: 删除已经备份的表
+    1.
+        mysql>drop table tempdb.dict__major;
+        
+D：还原tempdb.dict__major表
+    1.
+        mysql -uroot -pxxxxx -h127.0.0.1 -p3306 tempdb </tmp/tempdb.dict__major.sql
