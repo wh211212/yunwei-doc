@@ -135,7 +135,7 @@ virt-install -d --virt-type=kvm --name=aniu-saas-1  --vcpus=8 --memory=12288 --l
 - https://www.server-world.info/en/note?os=CentOS_7&p=kvm
 
 # 挂载硬盘
-  825  virsh attach-disk aniu-saas-1 /dev/cl/aniu-saas-1-data vdb --driver qemu --mode shareable
+  825   
   826  virsh attach-disk aniu-saas-2 /dev/cl/aniu-saas-2-data vdb --driver qemu --mode shareable
   827  virsh attach-disk aniu-saas-4 /dev/cl/aniu-saas-3-data vdb --driver qemu --mode shareable
   828  virsh --help | grep disk
