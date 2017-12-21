@@ -21,18 +21,20 @@ mysql -uroot -p -e"GRANT USAGE ON *.* TO 'zabbix'@'127.0.0.1' IDENTIFIED BY 'Ani
 mysql -uroot -p -e"GRANT USAGE ON *.* TO 'zabbix'@'localhost' IDENTIFIED BY 'Aniuzabbix123.'";
 mysql -uroot -p -e"flush privileges"
 
-GRANT ALL PRIVILEGES ON *.* TO zabbix@'127.0.0.1' IDENTIFIED BY 'Aniuzabbix123.'; 
+GRANT ALL PRIVILEGES ON niu_interface.* TO guojia@'192.168.103.%' IDENTIFIED BY 'dkemftlswjdgml'; 
 
 GRANT ALL PRIVILEGES ON aniu_product.* TO 'nkmdev'@'192.168.103.%' IDENTIFIED BY 'cgui2gty9XiKXKsN';
 
-GRANT ALL PRIVILEGES ON algo_quote.* TO 'algoquote'@'192.168.0.%' IDENTIFIED BY 'yv29NPCeSgMRCAsH';
+GRANT ALL PRIVILEGES ON *.* TO 'yunwei'@'%' IDENTIFIED BY 'Aniuyunwei123.';
 
 GRANT ALL PRIVILEGES ON `aniu_message_channel`.* TO 'guodepei'@'192.168.103.%' IDENTIFIED BY 'cgui2gty9XiKXKsN';
+
+GRANT SELECT ON niu_interface.* TO 'algoquote'@'192.168.0.%' IDENTIFIED BY 'yv29NPCeSgMRCAsH';
 
 GRANT ALL PRIVILEGES ON salt.* TO 'salt'@'%' IDENTIFIED BY 'Salt123.';
 
 
-GRANT ALL PRIVILEGES ON *.* TO 'aniuprod'@'%' IDENTIFIED BY 'Aniuprod123';
+GRANT ALL PRIVILEGES ON *.* TO 'caven'@'%' IDENTIFIED BY 'dkemftlswjdgml';
 
 GRANT SELECT ON aniu_crm.* TO 'tangxiuwen'@'192.168.103.%' IDENTIFIED BY 'xiuwen123.';
 
@@ -118,6 +120,7 @@ show grants for dba@localhost;
 # 权限删除
 grant  all on *.* to   dba@localhost;
 revoke all on *.* from dba@localhost;
+flush
 delete from mysql.user where user="walle" and host="192.168.0.%";
 
 delete from mysql.user where user="mingjing" and host="%";

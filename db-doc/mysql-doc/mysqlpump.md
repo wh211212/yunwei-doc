@@ -1,4 +1,39 @@
-#
+# 5.6
+
+# 导出
+
+- 导出表
+mysqldump -uroot -ppassword dbname tablename > tablename.sql
+
+- 导出库
+mysqldump -uroot -ppassword --database dbname > dbname.sql
+
+
+# 还原
+
+- 还原表
+
+mysql -uroot -ppassword. -h127.0.0.1 dbname < tablename.sql
+
+- 还原库
+
+mysql -uroot -pAniuhqdb123. -h127.0.0.1 dbname < dbname.sql
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 MySQL5.7之后多了一个备份工具：mysqlpump。它是mysqldump的一个衍生，mysqldump就不多说明了，现在看看mysqlpump到底有了哪些提升，可以查看官方文档，这里针对如何使用做下说明。
 

@@ -1,0 +1,73 @@
+#  maven website
+https://maven.apache.org/index.html
+
+## 将第三方JAR部署到远程存储库
+mvn deploy:deploy-file -DgroupId=javax.jms \
+                       -DartifactId=jms \
+                       -Dversion=1.1 \
+                       -Dpackaging=jar \
+                       -Dfile=E:/jar/jms-1.1.jar \
+                       -DrepositoryId=nexus \
+                       -DgeneratePom=false \
+                       -Durl=http://nexus.aniu.so/repository/maven-releases/
+
+ mvn deploy:deploy-file -DgroupId=cmbpay \  -DartifactId=jms \  -Dversion=1.0 \  -Dpackaging=jar \  -Dfile=D:/cmbB2B.jar \
+                                              -DrepositoryId=nexus \
+                                              -DgeneratePom=false \
+                                              -Durl=http://nexus.aniu.so/repository/maven-releases/
+
+#
+
+mvn deploy:deploy-file -DgroupId=cmbpay -DartifactId=cmbb2b -Dversion=1.0 -Dpackaging=jar -Dfile=D:/cmbB2B.jar -DrepositoryId=nexus -DgeneratePom=false -Durl=dav:http://nexus.aniu.so/repository/maven-central/
+
+mvn deploy:deploy-file -DgroupId=cmbpay -DartifactId=cmbb2b -Dversion=1.0 -Dpackaging=jar -Dfile=/tmp/cmbB2B.jar -DrepositoryId=nexus -DgeneratePom=false -Durl=http://nexus.aniu.so/repository/maven-central
+
+
+mvn install:install-file -DgroupId=ik-expression -DartifactId=ik-expression -Dversion=2.1.2 -Dpackaging=jar -Dfile=E:/jar/ik-expression-2.1.2.jar -Durl=http://nexus.aniu.so/repository/maven-releases/ -DrepositoryId=releases
+
+
+
+
+mvn deploy:deploy-file -DgroupId=alipay-sdk \
+                       -DartifactId=alipay-sdk-java \
+                       -Dversion=20170411150054 \
+                       -Dpackaging=jar \
+                       -Dfile=E:/jar/alipay-sdk-java-20170411150054.jar \
+                       -DrepositoryId=nexus \
+                       -DgeneratePom=false \
+                       -Durl=http://nexus.aniu.so/repository/maven-releases/
+
+#
+## 将第三方JAR部署到远程存储库
+mvn deploy:deploy-file -DgroupId=gexin-rp-sdk \
+                       -DartifactId=base \
+                       -Dversion=2.0.0.3 \
+                       -Dpackaging=jar \
+                       -Dfile=E:/jar/base-2.0.0.3.jar \
+                       -DrepositoryId=nexus \
+                       -DgeneratePom=false \
+                       -Durl=http://nexus.aniu.so/repository/maven-releases/
+
+mvn deploy:deploy-file -DgroupId=com.ape.jeql \
+                       -DartifactId=jeql \
+                       -Dversion=1.0 \
+                       -Dpackaging=jar \
+                       -Dfile=E:/jar/jeql-1.0.jar \
+                       -DrepositoryId=nexus \
+                       -DgeneratePom=false \
+                       -Durl=http://nexus.aniu.so/repository/maven-releases/
+## 将第三方JAR部署到远程存储库
+mvn deploy:deploy-file -DgroupId=ik-expression \
+                       -DartifactId=ik-expression \
+                       -Dversion=2.1.2 \
+                       -Dpackaging=jar \
+                       -Dfile=E:/jar/ik-expression-2.1.2.jar  \
+                       -DrepositoryId=nexus \
+                       -DgeneratePom=false \
+                       -Durl=http://nexus.aniu.so/repository/maven-releases/
+
+
+
+
+
+                       # mvn clean deploy -B -U

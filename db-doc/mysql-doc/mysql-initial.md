@@ -118,7 +118,12 @@ interactive-timeout
 open-files-limit = 8192
 
 
- 
+ [root@yunwei mysql]# /usr/sbin/mysqld --initialize --user=mysql --socket=/var/lib/mysql/mysql.sock
+ 100 200 300 400 500 600 700 800 900 1000
+ 100 200 300 400 500
+ 100 200 300 400 500
+ 100 200 300 400 500
+2017-12-06T11:14:35.605531Z 1 [Note] A temporary password is generated for root@localhost: 2HntkUfIZa<b
 
 # zhucong 
 
