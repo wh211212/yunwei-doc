@@ -1,0 +1,67 @@
+# yunwei
+192.168.0.99 zabbix.aniu.so jenkins.aniu.so sonar.aniu.so repo.aniu.so netdata.aniu.so grafana.aniu.so mattermost.aniu.so ftp.aniu.so log.aniu.so
+
+192.168.0.99 piwik.aniu.so
+192.168.0.51 elk.aniu.so
+
+#192.168.0.180 oa.aniu.so
+#175.102.133.89 oa.dzcj.tv
+192.168.0.91 oa.dzcj.tv
+
+# test
+192.168.1.134 zabbix.vip
+#192.168.1.134 oa.aniu.so oa.dzcj.tv
+# jira+wiki
+192.168.0.96 jira.aniu.so wiki.aniu.so
+
+# ovirt
+192.168.1.159 ovirt.aniu.tv
+10.1.1.2 ovirt.aniu.so
+
+# gitlab
+192.168.0.55 gitlab.aniu.so
+#192.168.0.222 gitlab.aniu.so
+
+# nexus
+#192.168.0.103 nexus.aniu.so
+
+# bk-paas
+192.168.0.206 paas.ops.aniu.so job.ops.aniu.so cmdb.ops.aniu.so
+
+# api
+
+# web
+#175.102.133.72 www.aniu.tv aniu.tv njdx.aniu.tv zjt.aniu.tv ucenter.aniu.tv v.aniu.tv b.aniu.tv qq.aniu.tv
+#192.168.0.26 www.aniu.tv njdx.aniu.tv zjt.aniu.tv ucenter.aniu.tv www.aniu.co www.niuke.me qq.aniu.tv ynyq.aniu.tv
+#192.168.0.29 www.aniu.tv ucenter.aniu.tv
+192.168.0.97 www.aniu.tv aniu.tv njdx.aniu.tv zjt.aniu.tv ucenter.aniu.tv v.aniu.tv b.aniu.tv qq.aniu.tv ifeng.aniu.tv
+
+# tysx
+#192.168.52.119 gp.tv189.com
+#192.168.52.120 gp.tv189.com
+
+# app
+#192.168.0.3 dzcjapp.aniu.tv
+
+
+# fz
+#192.168.0.180 aniu.com www.aniu.com bk.aniu.com v5.aniu.tv stock.aniu.com qq.aniu.com www.aniu.tv aniu.tv njdx.aniu.tv zjt.aniu.tv ucenter.aniu.tv v.aniu.tv b.aniu.tv qq.aniu.tv
+#175.102.133.86 aniu.com www.aniu.com bk.aniu.com v5.aniu.tv stock.aniu.com qq.aniu.com#
+#192.168.0.86 aniu.com www.aniu.com bk.aniu.com v5.aniu.tv qq.aniu.com www.aniu.top
+192.168.0.87 aniu.com www.aniu.com bk.aniu.com qq.aniu.com www.aniu.top wengu.aniu.com
+#192.168.0.94 aniu.com www.aniu.com bk.aniu.com v5.aniu.tv stock.aniu.com qq.aniu.com
+
+# zfund
+#175.105.133.90 www.zfund.com
+
+# aniu-fz
+#192.168.10.11 aniu.com www.aniu.com bk.aniu.com v5.aniu.tv stock.aniu.com qq.aniu.com ifeng.aniu.tv www.aniu.tv aniu.tv njdx.aniu.tv zjt.aniu.tv ucenter.aniu.tv v.aniu.tv b.aniu.tv qq.aniu.tv
+#192.168.0.180 ifeng.aniu.tv www.aniu.tv aniu.tv njdx.aniu.tv zjt.aniu.tv ucenter.aniu.tv v.aniu.tv b.aniu.tv qq.aniu.tv
+#192.168.0.97 ifeng.aniu.tv www.aniu.tv aniu.tv njdx.aniu.tv zjt.aniu.tv ucenter.aniu.tv v.aniu.tv b.aniu.tv qq.aniu.tv
+
+# CM
+192.168.1.137 cdh01.aniu.so
+192.168.1.148 cdh02.aniu.so
+192.168.1.149 cdh03.aniu.so
+192.168.1.150 cdh04.aniu.so
+#0.0.0.0 csgob0t.online

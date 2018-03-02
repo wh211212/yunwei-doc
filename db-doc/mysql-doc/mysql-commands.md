@@ -13,7 +13,7 @@ flush privileges;
 
 # 重置密码MySQL5.7
 
-update mysql.user set password=password('root') where User='root';
+update mysql.user set password=password('bareos') where User='bareos';
 
 # 权限设置
 

@@ -29,13 +29,16 @@ nat (inside,dianxin) source static obj-192.168.0.99 obj-175.102.133.88 service t
 
 object network obj-192.168.0.99
 host 192.168.0.99
-host 192.168.0.99
-nat (inside,dianxin) source static obj-192.168.0.55 obj-175.102.133.88 service tcp-80 tcp-21212
 
 nat (inside,dianxin) source static obj-192.168.0.55 obj-175.102.133.88 service tcp-80 tcp-21212
+nat (inside,dianxin) source static obj-192.168.0.55 obj-175.102.133.88 service tcp-80 tcp-21212
 
 
-#
+# oa
+object network obj-192.168.0.91
+host 192.168.0.91
+access-list From-dianxin extended permit tcp any host 192.168.0.91 eq www
+nat (inside,dianxin) source static obj-192.168.0.91 obj-175.102.133.89 service tcp-80 tcp-8888
 
 access-list From-dianxin extended permit tcp any host 192.168.0.30 eq www
 
