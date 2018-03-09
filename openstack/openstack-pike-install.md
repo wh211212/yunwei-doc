@@ -23,3 +23,5 @@ https://releases.openstack.org/
 共享文件系统	Manila	提供文件共享服务
 DNS服务	Designate	提供DNS服务器服务
 密钥管理器服务	Barbican	提供密钥管理服务
+
+## 
