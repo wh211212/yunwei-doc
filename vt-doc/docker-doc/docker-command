@@ -2,7 +2,6 @@
 
 > 文章Docker所有操作基于CentOS Linux release 7.3.1611 (Core)，docker-ce
 
-
 - 查看docker版本
 
 ```

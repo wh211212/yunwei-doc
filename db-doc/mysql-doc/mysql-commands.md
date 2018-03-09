@@ -21,7 +21,7 @@ mysql -uroot -p -e"GRANT USAGE ON *.* TO 'zabbix'@'127.0.0.1' IDENTIFIED BY 'Ani
 mysql -uroot -p -e"GRANT USAGE ON *.* TO 'zabbix'@'localhost' IDENTIFIED BY 'Aniuzabbix123.'";
 mysql -uroot -p -e"flush privileges"
 
-GRANT ALL PRIVILEGES ON niu_interface.* TO guojia@'192.168.103.%' IDENTIFIED BY 'dkemftlswjdgml'; 
+GRANT ALL PRIVILEGES ON aniu_cms.* TO aniucms@'192.168.103.%' IDENTIFIED BY 'Aniucms123.'; 
 
 GRANT ALL PRIVILEGES ON aniu_product.* TO 'nkmdev'@'192.168.103.%' IDENTIFIED BY 'cgui2gty9XiKXKsN';
 
