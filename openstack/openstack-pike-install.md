@@ -573,6 +573,744 @@ export OS_IMAGE_API_VERSION=2
 通用的API，是用于为厂商，管理员，服务，以及用户自定义元数据。这种元数据可用于不同的资源，例如镜像，工件，卷，配额以及集合。一个定义包括了新属性的键，描述，约束以及可以与之关联的资源的类型。
 ```
 
+- 安装和配置镜像服务之前，必须创建创建一个数据库、服务凭证和API端点
+
+```bash
+# 创建数据库glance
+[root@controller ~(keystone)]# mysql -u root -pAniudba123.
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 10
+Server version: 10.1.20-MariaDB MariaDB Server
+
+Copyright (c) 2000, 2016, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> CREATE DATABASE glance;
+Query OK, 1 row affected (0.00 sec)
+
+MariaDB [(none)]> GRANT ALL PRIVILEGES ON glance.* TO 'glance'@'localhost' \
+    ->   IDENTIFIED BY 'GLANCE_DBPASS';
+Query OK, 0 rows affected (0.00 sec)
+
+MariaDB [(none)]> GRANT ALL PRIVILEGES ON glance.* TO 'glance'@'%' \
+    ->   IDENTIFIED BY 'GLANCE_DBPASS';
+Query OK, 0 rows affected (0.00 sec)
+
+MariaDB [(none)]> flush privileges;
+Query OK, 0 rows affected (0.00 sec)
+
+MariaDB [(none)]> exit
+Bye
+
+# 要创建服务证书,创建 glance 用户,
+[root@controller ~(keystone)]# openstack user create --domain default --password-prompt glance
+User Password: #glancepassword
+Repeat User Password:
++---------------------+----------------------------------+
+| Field               | Value                            |
++---------------------+----------------------------------+
+| domain_id           | ac02661aedd84404a95497ec532d3fdb |
+| enabled             | True                             |
+| id                  | ab5176ac1d794612bf51771d78994e53 |
+| name                | glance                           |
+| options             | {}                               |
+| password_expires_at | None                             |
++---------------------+----------------------------------+
+
+# 添加 admin 角色到 glance 用户和 service 项目上
+openstack role add --project service --user glance admin
+
+# 创建``glance``服务实体
+[root@controller ~(keystone)]# openstack service create --name glance --description "OpenStack Image" image
++-------------+----------------------------------+
+| Field       | Value                            |
++-------------+----------------------------------+
+| description | OpenStack Image                  |
+| enabled     | True                             |
+| id          | c109bef0d8834b6a83210f16e657ecd4 |
+| name        | glance                           |
+| type        | image                            |
++-------------+----------------------------------+
+
+# 创建镜像服务的 API 端点
+[root@controller ~(keystone)]#  openstack endpoint create --region RegionOne image public http://controller:9292
++--------------+----------------------------------+
+| Field        | Value                            |
++--------------+----------------------------------+
+| enabled      | True                             |
+| id           | d72f29584b814113b056916e1c8772ec |
+| interface    | public                           |
+| region       | RegionOne                        |
+| region_id    | RegionOne                        |
+| service_id   | c109bef0d8834b6a83210f16e657ecd4 |
+| service_name | glance                           |
+| service_type | image                            |
+| url          | http://controller:9292           |
++--------------+----------------------------------+
+[root@controller ~(keystone)]# openstack endpoint create --region RegionOne image internal http://controller:9292
++--------------+----------------------------------+
+| Field        | Value                            |
++--------------+----------------------------------+
+| enabled      | True                             |
+| id           | e37550a16f8641b79cfefa3d4d1a5ad8 |
+| interface    | internal                         |
+| region       | RegionOne                        |
+| region_id    | RegionOne                        |
+| service_id   | c109bef0d8834b6a83210f16e657ecd4 |
+| service_name | glance                           |
+| service_type | image                            |
+| url          | http://controller:9292           |
++--------------+----------------------------------+
+[root@controller ~(keystone)]# openstack endpoint create --region RegionOne image admin http://controller:9292
++--------------+----------------------------------+
+| Field        | Value                            |
++--------------+----------------------------------+
+| enabled      | True                             |
+| id           | 01bcbe56776c42568cfad5a13094c81c |
+| interface    | admin                            |
+| region       | RegionOne                        |
+| region_id    | RegionOne                        |
+| service_id   | c109bef0d8834b6a83210f16e657ecd4 |
+| service_name | glance                           |
+| service_type | image                            |
+| url          | http://controller:9292           |
++--------------+----------------------------------+
+```
+
+#### 安全并配置组件
+
+- 安装软件包：
+
+```bash
+yum --enablerepo=centos-openstack-pike install openstack-glance
+```
+
+- 编辑文件 /etc/glance/glance-api.conf 并完成如下动作
+
+```bash
+# 在 [database] 部分，配置数据库访问：
+[database]
+# 
+connection = mysql+pymysql://glance:GLANCE_DBPASS@controller/glance # 将``GLANCE_DBPASS`` 替换为你为镜像服务选择的密码
+
+# 在 [keystone_authtoken] 和 [paste_deploy] 部分，配置认证服务访问
+[keystone_authtoken]
+...
+auth_uri = http://controller:5000
+auth_url = http://controller:35357
+memcached_servers = controller:11211
+auth_type = password
+project_domain_name = default
+user_domain_name = default
+project_name = service
+username = glance
+password = GLANCE_PASS 
+
+[paste_deploy]
+...
+flavor = keystone
+# 将 GLANCE_PASS 替换为你为认证服务中你为 glance 用户选择的密码,在 [keystone_authtoken] 中注释或者删除其他选项
+
+# 在 [glance_store] 部分，配置本地文件系统存储和镜像文件位置：
+[glance_store]
+...
+stores = file,http
+default_store = file
+filesystem_store_datadir = /var/lib/glance/images/
+
+```
+
+- 编辑文件 ``/etc/glance/glance-registry.conf``并完成如下动作：
+
+```bash
+# 在 [database] 部分，配置数据库访问：
+[database]
+# 
+connection = mysql+pymysql://glance:GLANCE_DBPASS@controller/glance # 将``GLANCE_DBPASS`` 替换为你为镜像服务选择的密码
+
+# 在 [keystone_authtoken] 和 [paste_deploy] 部分，配置认证服务访问：
+[keystone_authtoken]
+...
+auth_uri = http://controller:5000
+auth_url = http://controller:35357
+memcached_servers = controller:11211
+auth_type = password
+project_domain_name = default
+user_domain_name = default
+project_name = service
+username = glance
+password = GLANCE_PASS
+
+[paste_deploy]
+...
+flavor = keystone
+# 将 GLANCE_PASS 替换为你为认证服务中你为 glance 用户选择的密码。在 [keystone_authtoken] 中注释或者删除其他选项。
+
+# 查看 
+[root@controller ~]# egrep -v '^#|^$' /etc/glance/glance-api.conf 
+[DEFAULT]
+bind_host = 0.0.0.0
+[cors]
+[database]
+connection = mysql+pymysql://glance:GLANCE_DBPASS@controller/glance
+[glance_store]
+stores = file,http
+default_store = file
+filesystem_store_datadir = /var/lib/glance/images/
+[image_format]
+[keystone_authtoken]
+auth_uri = http://controller:5000
+auth_url = http://controller:35357
+memcached_servers = controller:11211
+auth_type = password
+project_domain_name = default
+user_domain_name = default
+project_name = service
+username = glance
+password = glancepassword
+[matchmaker_redis]
+[oslo_concurrency]
+[oslo_messaging_amqp]
+[oslo_messaging_kafka]
+[oslo_messaging_notifications]
+[oslo_messaging_rabbit]
+[oslo_messaging_zmq]
+[oslo_middleware]
+[oslo_policy]
+[paste_deploy]
+flavor = keystone
+[profiler]
+[store_type_location_strategy]
+[task]
+[taskflow_executor]
+#
+[root@controller ~]# egrep -v '^#|^$' /etc/glance/glance-registry.conf
+[DEFAULT]
+bind_host = 0.0.0.0
+[database]
+connection = mysql+pymysql://glance:GLANCE_DBPASS@controller/glance
+[keystone_authtoken]
+auth_uri = http://controller:5000
+auth_url = http://controller:35357
+memcached_servers = controller:11211
+auth_type = password
+project_domain_name = default
+user_domain_name = default
+project_name = service
+username = glance
+password = glancepassword
+[matchmaker_redis]
+[oslo_messaging_amqp]
+[oslo_messaging_kafka]
+[oslo_messaging_notifications]
+[oslo_messaging_rabbit]
+[oslo_messaging_zmq]
+[oslo_policy]
+[paste_deploy]
+flavor = keyston
+```
+
+- 写入镜像服务数据库：
+
+```bash
+su -s /bin/sh -c "glance-manage db_sync" glance
+```
+
+- 启动镜像服务、配置他们随机启动
+```bash
+# systemctl enable openstack-glance-api.service \
+  openstack-glance-registry.service
+# systemctl start openstack-glance-api.service \
+  openstack-glance-registry.service
+```
+
+- 验证操作
+
+> 使用 `CirrOS <http://launchpad.net/cirros>`__对镜像服务进行验证，CirrOS是一个小型的Linux镜像可以用来帮助你进行 OpenStack部署测试.
+
+```bash
+# 下载源镜像
+wget http://download.cirros-cloud.net/0.4.0/cirros-0.4.0-x86_64-disk.img
+
+# 使用 QCOW2 磁盘格式， bare 容器格式上传镜像到镜像服务并设置公共可见，这样所有的项目都可以访问它：
+[root@controller ~]# openstack image create "cirros"  --file cirros-0.4.0-x86_64-disk.img --disk-format qcow2 --container-format bare --public
++------------------+------------------------------------------------------+
+| Field            | Value                                                |
++------------------+------------------------------------------------------+
+| checksum         | 443b7623e27ecf03dc9e01ee93f67afe                     |
+| container_format | bare                                                 |
+| created_at       | 2018-03-12T06:33:03Z                                 |
+| disk_format      | qcow2                                                |
+| file             | /v2/images/5be4203b-066c-46c6-88e0-5b6eac765f0a/file |
+| id               | 5be4203b-066c-46c6-88e0-5b6eac765f0a                 |
+| min_disk         | 0                                                    |
+| min_ram          | 0                                                    |
+| name             | cirros                                               |
+| owner            | f1008e21497349dc81ea27b4d9ba9b22                     |
+| protected        | False                                                |
+| schema           | /v2/schemas/image                                    |
+| size             | 12716032                                             |
+| status           | active                                               |
+| tags             |                                                      |
+| updated_at       | 2018-03-12T06:33:04Z                                 |
+| virtual_size     | None                                                 |
+| visibility       | public                                               |
++------------------+------------------------------------------------------+
+
+# 确认镜像的上传并验证属性
+[root@controller ~]# openstack image list
++--------------------------------------+--------+--------+
+| ID                                   | Name   | Status |
++--------------------------------------+--------+--------+
+| 5be4203b-066c-46c6-88e0-5b6eac765f0a | cirros | active |
++--------------------------------------+--------+--------+
+```
+
+## 计算服务
+
+### 计算服务概览
+
+> 使用OpenStack计算服务来托管和管理云计算系统。OpenStack计算服务是基础设施即服务(IaaS)系统的主要部分，模块主要由Python实现。
+
+> OpenStack计算组件请求OpenStack Identity服务进行认证；请求OpenStack Image服务提供磁盘镜像；为OpenStack dashboard提供用户与管理员接口。磁盘镜像访问限制在项目与用户上；配额以每个项目进行设定（例如，每个项目下可以创建多少实例）。OpenStack组件可以在标准硬件上水平大规模扩展，并且下载磁盘镜像启动虚拟机实例。
+
+OpenStack计算服务由下列组件所构成：
+
+- nova-api 服务
+
+> 接收和响应来自最终用户的计算API请求。此服务支持OpenStack计算服务API，Amazon EC2 API，以及特殊的管理API用于赋予用户做一些管理的操作。它会强制实施一些规则，发起多数的编排活动，例如运行一个实例。
+
+- nova-api-metadata 服务
+
+> 接受来自虚拟机发送的元数据请求。``nova-api-metadata``服务一般在安装``nova-network``服务的多主机模式下使用。
+
+- nova-compute 服务 
+
+> 一个持续工作的守护进程，通过Hypervior的API来创建和销毁虚拟机实例。例如：
+
+```bash
+XenServer/XCP 的 XenAPI
+KVM 或 QEMU 的 libvirt
+VMware 的 VMwareAPI
+```
+> 过程是蛮复杂的。最为基本的，守护进程同意了来自队列的动作请求，转换为一系列的系统命令如启动一个KVM实例，然后，到数据库中更新它的状态
+
+- nova-scheduler 服务
+
+> 拿到一个来自队列请求虚拟机实例，然后决定那台计算服务器主机来运行它
+
+- nova-conductor 模块
+
+> 媒介作用于``nova-compute``服务与数据库之间。它排除了由``nova-compute``服务对云数据库的直接访问。nova-conductor模块可以水平扩展。但是，不要将它部署在运行``nova-compute``服务的主机节点上
+
+- nova-cert 模块
+
+> 服务器守护进程向Nova Cert服务提供X509证书。用来为``euca-bundle-image``生成证书。仅仅是在EC2 API的请求中使用
+
+- nova-network worker 守护进程
+
+> 与``nova-compute``服务类似，从队列中接受网络任务，并且操作网络。执行任务例如创建桥接的接口或者改变IPtables的规则
+
+- nova-consoleauth 守护进程
+
+> 授权控制台代理所提供的用户令牌。
+
+- nova-novncproxy 守护进程
+
+> 提供一个代理，用于访问正在运行的实例，通过VNC协议，支持基于浏览器的novnc客户端。
+
+- nova-spicehtml5proxy 守护进程
+
+> 提供一个代理，用于访问正在运行的实例，通过 SPICE 协议，支持基于浏览器的 HTML5 客户端。
+
+- nova-xvpvncproxy 守护进程
+
+> 提供一个代理，用于访问正在运行的实例，通过VNC协议，支持OpenStack特定的Java客户端。
+
+- nova-cert 守护进程
+
+> X509 证书
+
+- nova 客户端
+
+> 用于用户作为租户管理员或最终用户来提交命令
+
+- 队列
+
+> 一个在守护进程间传递消息的中央集线器。
+
+- SQL数据库
+
+```bash
+存储构建时和运行时的状态，为云基础设施，包括有：
+
+可用实例类型
+
+使用中的实例
+
+可用网络
+
+项目
+```
+
+### 安装并配置控制节点
+
+- 安装和配置 Compute 服务前，必须创建数据库服务的凭据以及 API endpoints
+
+```bash
+# 创建数据库nova,nova_api
+[root@controller ~]# mysql -u root -pAniudba123.       
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 29
+Server version: 10.1.20-MariaDB MariaDB Server
+
+Copyright (c) 2000, 2016, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> CREATE DATABASE nova_api;
+Query OK, 1 row affected (0.00 sec)
+
+MariaDB [(none)]> CREATE DATABASE nova;
+Query OK, 1 row affected (0.00 sec)
+
+MariaDB [(none)]> GRANT ALL PRIVILEGES ON nova_api.* TO 'nova'@'localhost' \
+    ->   IDENTIFIED BY 'NOVA_DBPASS';
+Query OK, 0 rows affected (0.00 sec)
+
+MariaDB [(none)]> GRANT ALL PRIVILEGES ON nova_api.* TO 'nova'@'%' \
+    ->   IDENTIFIED BY 'NOVA_DBPASS';
+Query OK, 0 rows affected (0.00 sec)
+
+MariaDB [(none)]> GRANT ALL PRIVILEGES ON nova.* TO 'nova'@'localhost' \
+    ->   IDENTIFIED BY 'NOVA_DBPASS';
+Query OK, 0 rows affected (0.00 sec)
+
+MariaDB [(none)]> GRANT ALL PRIVILEGES ON nova.* TO 'nova'@'%' \
+    ->   IDENTIFIED BY 'NOVA_DBPASS';
+Query OK, 0 rows affected (0.00 sec)
+
+MariaDB [(none)]> flush privileges;
+Query OK, 0 rows affected (0.00 sec)
+
+MariaDB [(none)]> exit
+Bye
+
+# 要创建服务证书,创建 nova 用户,给 nova 用户添加 admin 角色
+[root@controller ~]# openstack user create --domain default --password-prompt nova
+User Password: #novapassword
+Repeat User Password:
++---------------------+----------------------------------+
+| Field               | Value                            |
++---------------------+----------------------------------+
+| domain_id           | ac02661aedd84404a95497ec532d3fdb |
+| enabled             | True                             |
+| id                  | a9dbc6d038d74d8580b9422f74785e19 |
+| name                | nova                             |
+| options             | {}                               |
+| password_expires_at | None                             |
++---------------------+----------------------------------+
+[root@controller ~]# openstack role add --project service --user nova admin
+#
+
+# 创建 nova 服务实体
+[root@controller ~]# openstack service create --name nova --description "OpenStack Compute" compute
++-------------+----------------------------------+
+| Field       | Value                            |
++-------------+----------------------------------+
+| description | OpenStack Compute                |
+| enabled     | True                             |
+| id          | 70185ac2917a4cb18c00ca28828eac95 |
+| name        | nova                             |
+| type        | compute                          |
++-------------+----------------------------------+
+
+# 创建 Compute 服务 API 端点
+[root@controller ~]# openstack service create --name nova \
+>   --description "OpenStack Compute" compute
++-------------+----------------------------------+
+| Field       | Value                            |
++-------------+----------------------------------+
+| description | OpenStack Compute                |
+| enabled     | True                             |
+| id          | 70185ac2917a4cb18c00ca28828eac95 |
+| name        | nova                             |
+| type        | compute                          |
++-------------+----------------------------------+
+[root@controller ~]# openstack endpoint create --region RegionOne \
+>   compute public http://controller:8774/v2.1/%\(tenant_id\)s
++--------------+-------------------------------------------+
+| Field        | Value                                     |
++--------------+-------------------------------------------+
+| enabled      | True                                      |
+| id           | e5be8e10fe47477c848e5ab6cc28110a          |
+| interface    | public                                    |
+| region       | RegionOne                                 |
+| region_id    | RegionOne                                 |
+| service_id   | 70185ac2917a4cb18c00ca28828eac95          |
+| service_name | nova                                      |
+| service_type | compute                                   |
+| url          | http://controller:8774/v2.1/%(tenant_id)s |
++--------------+-------------------------------------------+
+[root@controller ~]# openstack endpoint create --region RegionOne \
+>   compute internal http://controller:8774/v2.1/%\(tenant_id\)s
++--------------+-------------------------------------------+
+| Field        | Value                                     |
++--------------+-------------------------------------------+
+| enabled      | True                                      |
+| id           | 541dea4301a84077b5b8c3c29b1eb620          |
+| interface    | internal                                  |
+| region       | RegionOne                                 |
+| region_id    | RegionOne                                 |
+| service_id   | 70185ac2917a4cb18c00ca28828eac95          |
+| service_name | nova                                      |
+| service_type | compute                                   |
+| url          | http://controller:8774/v2.1/%(tenant_id)s |
++--------------+-------------------------------------------+
+[root@controller ~]# openstack endpoint create --region RegionOne \
+>   compute admin http://controller:8774/v2.1/%\(tenant_id\)s
++--------------+-------------------------------------------+
+| Field        | Value                                     |
++--------------+-------------------------------------------+
+| enabled      | True                                      |
+| id           | f1878fcd16ab49a6b10ada425e8347c5          |
+| interface    | admin                                     |
+| region       | RegionOne                                 |
+| region_id    | RegionOne                                 |
+| service_id   | 70185ac2917a4cb18c00ca28828eac95          |
+| service_name | nova                                      |
+| service_type | compute                                   |
+| url          | http://controller:8774/v2.1/%(tenant_id)s |
++--------------+-------------------------------------------+
+
+#
+[root@controller ~]# openstack service create --name placement --description "OpenStack Compute Placement service" placement
++-------------+-------------------------------------+
+| Field       | Value                               |
++-------------+-------------------------------------+
+| description | OpenStack Compute Placement service |
+| enabled     | True                                |
+| id          | 7784b868e2074eeab1a849982d8c3422    |
+| name        | placement                           |
+| type        | placement                           |
++-------------+-------------------------------------+
+[root@controller ~]# echo $controller
+
+[root@controller ~]# openstack endpoint create --region RegionOne placement public http://controller:8778
++--------------+----------------------------------+
+| Field        | Value                            |
++--------------+----------------------------------+
+| enabled      | True                             |
+| id           | 7d3431bb046649658a7522b8c094b891 |
+| interface    | public                           |
+| region       | RegionOne                        |
+| region_id    | RegionOne                        |
+| service_id   | 7784b868e2074eeab1a849982d8c3422 |
+| service_name | placement                        |
+| service_type | placement                        |
+| url          | http://controller:8778           |
++--------------+----------------------------------+
+[root@controller ~]# openstack endpoint create --region RegionOne placement internal http://controller:8778
++--------------+----------------------------------+
+| Field        | Value                            |
++--------------+----------------------------------+
+| enabled      | True                             |
+| id           | 87f08f420dbf42cfb309635a2b084db8 |
+| interface    | internal                         |
+| region       | RegionOne                        |
+| region_id    | RegionOne                        |
+| service_id   | 7784b868e2074eeab1a849982d8c3422 |
+| service_name | placement                        |
+| service_type | placement                        |
+| url          | http://controller:8778           |
++--------------+----------------------------------+
+[root@controller ~]# openstack endpoint create --region RegionOne placement admin http://controller:8778 
++--------------+----------------------------------+
+| Field        | Value                            |
++--------------+----------------------------------+
+| enabled      | True                             |
+| id           | 6652e951aaa44a00bb2611b780728a13 |
+| interface    | admin                            |
+| region       | RegionOne                        |
+| region_id    | RegionOne                        |
+| service_id   | 7784b868e2074eeab1a849982d8c3422 |
+| service_name | placement                        |
+| service_type | placement                        |
+| url          | http://controller:8778           |
++--------------+----------------------------------+
+```
+
+#### 安全并配置组件
+
+- 安装nova软件包
+
+```bash
+yum --enablerepo=centos-openstack-pike install openstack-nova-api openstack-nova-conductor \
+  openstack-nova-console openstack-nova-novncproxy \
+  openstack-nova-scheduler
+```
+- 编辑``/etc/nova/nova.conf``文件并完成下面的操作
+
+```bash
+# 在``[DEFAULT]``部分，只启用计算和元数据API：
+enabled_apis = osapi_compute,metadata
+
+# 在``[api_database]``和``[database]``部分，配置数据库的连接：
+[api_database]
+...
+connection = mysql+pymysql://nova:NOVA_DBPASS@controller/nova_api
+
+[database]
+...
+connection = mysql+pymysql://nova:NOVA_DBPASS@controller/nova
+
+# 在 “[DEFAULT]” 和 “[oslo_messaging_rabbit]”部分，配置 “RabbitMQ” 消息队列访问
+[DEFAULT]
+...
+rpc_backend = rabbit
+
+[oslo_messaging_rabbit]
+...
+rabbit_host = controller
+rabbit_userid = openstack
+rabbit_password = RABBIT_PASS
+
+# 在 “[DEFAULT]” 和 “[keystone_authtoken]” 部分，配置认证服务访问：
+[DEFAULT]
+...
+auth_strategy = keystone
+
+[keystone_authtoken]
+...
+auth_uri = http://controller:5000
+auth_url = http://controller:35357
+memcached_servers = controller:11211
+auth_type = password
+project_domain_name = default
+user_domain_name = default
+project_name = service
+username = nova
+password = NOVA_PASS
+
+# 在 [DEFAULT 部分，配置``my_ip`` 来使用控制节点的管理接口的IP 地址。
+[DEFAULT]
+...
+my_ip = 10.1.1.2
+
+# 在 [DEFAULT] 部分，使能 Networking 服务：
+[DEFAULT]
+...
+use_neutron = True
+firewall_driver = nova.virt.firewall.NoopFirewallDriver
+
+# 默认情况下，计算服务使用内置的防火墙服务。由于网络服务包含了防火墙服务，你必须使用``nova.virt.firewall.NoopFirewallDriver``防火墙服务来禁用掉计算服务内置的防火墙服务
+
+# 在``[vnc]``部分，配置VNC代理使用控制节点的管理接口IP地址 ：
+[vnc]
+...
+vncserver_listen = $my_ip
+vncserver_proxyclient_address = $my_ip
+
+# 在 [glance] 区域，配置镜像服务 API 的位置：
+[glance]
+...
+api_servers = http://controller:9292
+
+# 在 [oslo_concurrency] 部分，配置锁路径：
+[oslo_concurrency]
+...
+lock_path = /var/lib/nova/tmp
+
+```
+
+- 同步Compute 数据库
+
+```bash
+[root@controller ~]# su -s /bin/sh -c "nova-manage api_db sync" nova
+Option "rpc_backend" from group "DEFAULT" is deprecated for removal (Replaced by [DEFAULT]/transport_url).  Its value may be silently ignored in the future.
+[root@controller ~]# su -s /bin/sh -c "nova-manage db sync" nova
+Option "rpc_backend" from group "DEFAULT" is deprecated for removal (Replaced by [DEFAULT]/transport_url).  Its value may be silently ignored in the future.
+WARNING: cell0 mapping not found - not syncing cell0.
+/usr/lib/python2.7/site-packages/pymysql/cursors.py:165: Warning: (1831, u'Duplicate index `block_device_mapping_instance_uuid_virtual_name_device_name_idx`. This is deprecated and will be disallowed in a future release.')
+  result = self._query(query)
+/usr/lib/python2.7/site-packages/pymysql/cursors.py:165: Warning: (1831, u'Duplicate index `uniq_instances0uuid`. This is deprecated and will be disallowed in a future release.')
+  result = self._query(query)
+  # 报警可以忽略
+[root@controller ~]# for service in api consoleauth conductor scheduler novncproxy; do
+systemctl start openstack-nova-$service
+systemctl enable openstack-nova-$service
+done
+ su -s /bin/bash nova -c "nova-manage cell_v2 map_cell0 \
+--database_connection mysql+pymysql://nova:NOVA_DBPASS@controller/nova_cell0"
+
+su -s /bin/bash nova -c "nova-manage cell_v2 create_cell --name cell1 \
+--database_connection mysql+pymysql://nova:NOVA_DBPASS@controller/nova \
+--transport-url rabbit://openstack:RABBIT_PASS@controller:5672"
+# 重启
+for service in api consoleauth conductor scheduler novncproxy; do
+systemctl restart openstack-nova-$service
+done
+```
+
+- 启动 Compute 服务并将其设置为随系统启动
+
+```bash
+# systemctl enable openstack-nova-api.service \
+  openstack-nova-consoleauth.service openstack-nova-scheduler.service \
+  openstack-nova-conductor.service openstack-nova-novncproxy.service
+# systemctl start openstack-nova-api.service openstack-nova-consoleauth.service openstack-nova-scheduler.service openstack-nova-conductor.service openstack-nova-novncproxy.service
+```
+
+### 安装和配置计算节点
+
+> 安装和配置计算节点,计算节点需支持对虚拟化的硬件加速。
+
+- 安装 openstack-nova-compute软件包
+
+```bash
+yum --enablerepo=centos-openstack-pike  install openstack-nova-compute
+```
+
+- 编辑``/etc/nova/nova.conf``文件并完成下面的操作
+
+```bash
+# 在``[DEFAULT]`` 和 [oslo_messaging_rabbit]部分，配置``RabbitMQ``消息队列的连接：
+[DEFAULT]
+...
+rpc_backend = rabbit
+
+[oslo_messaging_rabbit]
+...
+rabbit_host = controller
+rabbit_userid = openstack
+rabbit_password = RABBIT_PASS
+
+# 在 “[DEFAULT]” 和 “[keystone_authtoken]” 部分，配置认证服务访问：
+[DEFAULT]
+...
+auth_strategy = keystone
+
+[keystone_authtoken]
+...
+auth_uri = http://controller:5000
+auth_url = http://controller:35357
+memcached_servers = controller:11211
+auth_type = password
+project_domain_name = default
+user_domain_name = default
+project_name = service
+username = nova
+password = NOVA_PASS
+```
+
+
+
+
+
+
+
+
 
 
 
