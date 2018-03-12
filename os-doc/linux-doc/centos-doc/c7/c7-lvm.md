@@ -1,4 +1,4 @@
-# 
+# 安装软件包
 yum install xfsprogs -y 
 
 # 重新格式化挂载分区（类似mkfs.ext4）
