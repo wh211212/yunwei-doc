@@ -1,11 +1,9 @@
 # tysx-prod-1
-
 1、（192.168.76.100） 更改主机名为tysx-prod-1
 
 2、执行cmd_track
 
 bash cmd_track_install.sh
-
 
 #
 yum install php haproxy keepalived -y
@@ -25,8 +23,6 @@ mkfs.ext4 /dev/vg0/log
 yum -y install rsync wget vim openssh-clients iftop iotop sysstat  lsof telnet traceroute htop  gcc-c++ tree man iptraf lrzsz net-tools  dstat tree ntp dos2unix
 
 5、
-
-
 # tysx-prod-2
 
 

@@ -10,5 +10,6 @@ mkfs.xfs -f /dev/cl_kvm-centos7/data
 # 重载
 xfs_growfs /dev/mapper/cl-data
 
+# 删除VG
 
-vim
+
