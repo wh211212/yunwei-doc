@@ -19,8 +19,6 @@ hstname sh-kvm-3-1
 
 sed -i 's/localhost.localdomain/sh-kvm-3-8/g' /etc/sysconfig/network && echo "127.0.0.1   localhost localhost.localdomain sh-kvm-3-8" > /etc/hosts && echo "192.168.0.99 salt" >> /etc/hosts && hostname sh-kvm-3-8
 
-
-
 - 启动saltstack客户端
 
 
