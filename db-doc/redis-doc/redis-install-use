@@ -9,6 +9,8 @@ wget http://download.redis.io/releases/redis-3.2.9.tar.gz
 echo 511 > /proc/sys/net/core/somaxconn
 sysctl vm.overcommit_memory=1
 
+echo "vm.overcommit_memory=1" >> /etc/sysctl.conf
+
 echo 2 > /proc/sys/vm/overcommit_memory
 echo 80 > /proc/sys/vm/overcommit_ratio
 

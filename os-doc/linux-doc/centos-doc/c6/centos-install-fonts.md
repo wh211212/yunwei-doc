@@ -15,9 +15,6 @@
 cd /usr/share/fonts/winFonts
 ```
 
-
-
-
 > 运行以下命令建立字体索引信息，更新字体缓存：：
 ```
 # sudo mkfontscale
