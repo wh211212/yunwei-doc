@@ -27,10 +27,15 @@ yum install apache-tomcat # 参数自己配置
 - 安装PostgreSQL 9.6
 
 ```bash
-# 配置PostgreSQL源
+
+# 配置PostgreSQL源，参考http://blog.csdn.net/wh211212/article/details/79627984
 yum install https://download.postgresql.org/pub/repos/yum/9.6/redhat/rhel-6-x86_64/pgdg-centos96-9.6-3.noarch.rpm
 yum install postgresql96 -y
 ```
+
+- 新建数据库
+
+
 
 
 
