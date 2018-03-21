@@ -1,5 +1,0 @@
----
-- hosts: api
-  remote_user: root
-  roles:
-    - ansible-zabbix-agent

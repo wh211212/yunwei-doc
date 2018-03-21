@@ -1,5 +1,0 @@
----
-  # sudo config for users
-- name: without password for wh on the remote hosts
-  action: shell echo "wh  ALL=(ALL)      NOPASSWD: ALL" >> /etc/sudoers
-  sudo: yes

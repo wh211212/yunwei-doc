@@ -1,5 +1,0 @@
----
-  # config hostname && hosts
-- name: change hostname
-  action: shell sed  -i 's/.localdomain//g' /etc/sysconfig/network && service network restart
-  sudo: yes

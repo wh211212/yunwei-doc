@@ -1,7 +1,0 @@
----
-  # copy localrepo to remote hosts
-  - copy: src=epel.repo dest=/etc/yum.repos.d/epel.repo owner=root group=root mode=644
-  - copy: src=zabbix.repo dest=/etc/yum.repos.d/zabbix.repo owner=root group=root mode=644
-
-
-  
