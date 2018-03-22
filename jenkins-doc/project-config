@@ -1,3 +1,0 @@
-#
-
-ssh pm.aniu.so "/bin/bash /home/wh/script/upgrade-zentao.sh"

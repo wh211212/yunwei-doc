@@ -7,6 +7,7 @@
 # ----------------------------------------
 # syntx check
 # define some variables
+
 redis_sentinel_ip=`ifconfig | grep 'inet addr:'| grep -v '127.0.0.1' | cut -d: -f2 | awk '{ print $1}'`
 redis_sentinel_dir=/data/redis-sentinel
 redis_dir=/usr/local/redis

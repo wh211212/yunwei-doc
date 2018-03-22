@@ -1,3 +1,0 @@
-# 
-
-systemctl status firewalld 
