@@ -4,7 +4,6 @@
 
 https://releases.openstack.org/
 
-## 
 （1）OpenStack的主要组件
 服务	代码名称	描述
 身份服务	Keystone	用户管理
