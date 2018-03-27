@@ -1,11 +1,6 @@
 # http://www.cisco.com/c/en/us/td/docs/security/asa/asa91/release/notes/asarn91.html
 
-
 # cisco 3750G
-
-
-
-
 
 # cisco 2960
 
@@ -33,7 +28,6 @@ system software:
 
     flash_init
     boot
-
 
 switch:
 
