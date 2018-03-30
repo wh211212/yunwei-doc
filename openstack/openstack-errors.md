@@ -64,3 +64,18 @@ openstack server create --flavor m1.small --image CentOS7 --security-group 74eeb
 
 #
 openstack security group rule create --protocol icmp --ingress yunwei # 使用创建的虚拟机通局域网
+
+
+# 创建虚拟机报错
+
+错误： 实例 "vm2" 执行所请求操作失败，实例处于错误状态。: 请稍后再试 [错误: Build of instance 4c64cbd2-4c57-40f3-95f5-09abaad8ceb7 aborted: Unable to establish connection to http://127.0.0.1:9696/v2.0/networks?id=b522591d-637c-41cb-9fd1-a3ede5d7bc7f: HTTPConnectionPool(host='127.0.0.1', port=9696): Max retries exceeded with url: ].
+
+lvdisplay | grep "8580f464-02e1-411c-bd94-a4af35e499a3"
+
+lsof| grep "8580f464-02e1-411c-bd94-a4af35e499a3"
+
+lvremove /dev/cinder-volumes/volume-8580f464-02e1-411c-bd94-a4af35e499a3
+
+dmsetup info -c /dev/cinder-volumes/volume-8580f464-02e1-411c-bd94-a4af35e499a3
+
+fuser -m /dev/cinder-volumes/volume-8580f464-02e1-411c-bd94-a
