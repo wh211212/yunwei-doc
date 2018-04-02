@@ -115,7 +115,8 @@ root       soft    nproc     unlimited
 
 重启MongoDB服务  /etc/init.d/mongod restart
 ```
-
+- MongoDB 连接工具
+ 
 - WARNING: Using the XFS filesystem is strongly recommended with the WiredTiger storage engine
 
 
