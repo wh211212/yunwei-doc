@@ -52,5 +52,9 @@ git stash clear: 清空Git栈。此时使用gitg等图形化工具会发现，�
 git reset --hard
 git pull<br><br><br><br><br><br>
 
+## fatal: refusing to merge unrelated histories
+
+git pull origin master --allow-unrelated-histories
+
 
 
