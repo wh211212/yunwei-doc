@@ -1,4 +1,14 @@
-# 安装软件包
+# 安装完成CentOS7 后对初始化LVM
+
+## 卸载hone
+
+```bash
+umount /dev/mapper/centos-home
+lvremove /dev/centos/home
+# 编辑fstab 删除挂载home的配置文件
+```
+
+## 安装软件包
 yum install xfsprogs -y 
 
 # 重新格式化挂载分区（类似mkfs.ext4）
