@@ -10,3 +10,4 @@ sudo lsb_release -a
 ufw enable
 ufw disable
 ufw status
+

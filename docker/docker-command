@@ -46,6 +46,7 @@ docker login             # 使用Docker证书登录这个CLI会话，在dockerhu
 docker tag <image> username/repository:tag  # 给镜像打标签以便上传到私有仓库（dockerhub）
 docker push username/repository:tag            # 上传打上标签的镜像（这里的操作个人认为类似git）
 docker run username/repository:tag                   # 从仓库运行镜像
+docker update --restart=always containerid # 开启自启容器
 ```
 
 # 服务相关命令
