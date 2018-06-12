@@ -14,7 +14,7 @@
 - 2018-06-12：
 
 ```
-1、迁移crmadmin，新增两台虚拟机，配置crmadmin运行环境，迁移完成后测试运行状态(两个小时)，迁移过程出现出现的问题：jdk8启动crmadmin导致合同发送不了，改回jdk7
+1、迁移crmadmin，新增两台虚拟机，配置crmadmin运行环境，迁移完成后测试运行状态(两个小时)，迁移过程出现出现的问题：jdk8启动crmadmin导致合同发送不了，改回oracle jdk7,crmadmin项目对jdk版本有要求
 2、新增的两台虚拟机添加监控，时间同步及crmadmin状态检测（30分钟）
 3、新增虚拟机同步到jumpserver，给辰鸣创建查看日志权限，添加实时日志输出到logio.aniu.so（50分钟）
 3、接口部署（zjtapi两次）（10分钟），（productapi一次）（5分钟）
