@@ -17,10 +17,17 @@
 1、迁移crmadmin，新增两台虚拟机，配置crmadmin运行环境，迁移完成后测试运行状态(两个小时)，迁移过程出现出现的问题：jdk8启动crmadmin导致合同发送不了，改回oracle jdk7,crmadmin项目对jdk版本有要求
 2、新增的两台虚拟机添加监控，时间同步及crmadmin状态检测（30分钟）
 3、新增虚拟机同步到jumpserver，给辰鸣创建查看日志权限，添加实时日志输出到logio.aniu.so（50分钟）
-3、接口部署（zjtapi两次）（10分钟），（productapi一次）（5分钟）
+3、接口部署（zjtapi三次）（15分钟），（productapi一次）（5分钟）
 4、帮助钟总安装vpn，十分钟
 5、jumpserver上同步Redis集群资产信息（20分钟）
 6、jumpserver上资产管理同步，更新虚拟机状态，新增添加，废弃删除（30分钟）
+
+
+7、新增crmadmin下午运行出现内存溢出故障，优化tomcat启动jvm参数，从运维层面暂时解决问题
+8、迁移0.8上服务，预计50分钟，迁移mmsadmin,nkmadmin.aniuadmin
+9、处理sql（一次）
+10、测试环境安装jenkins，配置打包环境
+11、nkmapi更新上线（10分钟），提供nkm测试环境（进行中）
 
 ```
 
