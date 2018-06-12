@@ -1,0 +1,7 @@
+type           ：PowerEdge R720
+IP             ：192.168.31.11
+servername     ：wengu-7
+cpu            ：2*16 Intel(R) Xeon(R) CPU E5-2650 v2 @ 2.60GHz
+memery         ：96G
+disk           ：2*600G raid1
+disk slot left ：6
