@@ -38,6 +38,8 @@
 2、迁移个别节点上负载高的业务
 3、中午接口上线，aniuapi/zjtapi/wxapi/userapi
 4、帮助伍敏查找日志
+5、合并23次merge请求
+6、worldcup域名配置，php、wx环境安装pdo
 ```
 
 - 2018-06-14：
