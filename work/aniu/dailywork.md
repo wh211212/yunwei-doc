@@ -64,3 +64,24 @@
 7、合并发布请求3次
 ```
 
+
+- 2018-06-19
+
+```
+1、监控系统告警处理
+2、利用新增ovirt5节点和ovirt4的ssd硬盘，创建一个新的glusterfs服务，添加到ovirt作为存储域，给redis集群使用，提高IO，现redis集群的数据盘为机械硬盘
+3、查看nkmapi报错日志，及查看messageapi运行状态
+4、gitlab添加mfeng@aniu.tv权限，能够开发dzcj-ott
+5、解决专家团接口由于数据库字段长度问题异常报错，增加aniu_msg_channel_req表mediaId长度为100
+
+```
+
+- 2018-06-20
+
+```
+1、机房ovirt节点启用em2网卡
+2、ovirt平台迁移多个虚拟机的网卡走新增的vmnet，即em2
+3、接口部署，jira任务处理，web更新
+4、机房ovirt1重启导致卡死修复，方案;断电10分钟左右，拔插内存重启，然后其自动加到ovirt平台
+```
+
