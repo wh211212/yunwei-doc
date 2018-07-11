@@ -167,7 +167,7 @@ password_config() {
 
 # disable no use service
 disable_serivces() {
-    systemctl stop postfix && systemctl enable postfix
+    systemctl stop postfix && systemctl disable postfix
     [ $? -eq 0 ] && echo "Disable postfix service complete."
 }
 
