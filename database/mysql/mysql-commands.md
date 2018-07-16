@@ -40,7 +40,10 @@ GRANT ALL PRIVILEGES ON *.* TO 'caven'@'%' IDENTIFIED BY 'dkemftlswjdgml';
 
 GRANT SELECT ON aniu_crm.* TO 'tangxiuwen'@'192.168.103.%' IDENTIFIED BY 'xiuwen123.';
 
-GRANT ALL PRIVILEGES ON `tysx_s`.`aniu_custom_service_phone` TO 'wangfei'@'192.168.0.%';
+
+aniu_special_event_signup、aniu_special_event
+
+GRANT SELECT ON `tysx_s`.`aniu_tk_paper` TO 'daiyeming'@'192.168.103.%' IDENTIFIED BY 'Agui2gty9XiKXKsN';
 
 flush privileges;
 
