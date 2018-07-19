@@ -7,18 +7,23 @@
 # ***********************************************
 #
 warback_dir=/data/warback/aniu-api
-find /data/warback/aniu-api/* -mtime +15 -exec rm -rf {} \;
+
+[ -d ${warback_dir} ] && find /data/warback/aniu-api/* -mtime +7 -exec rm -rf {} \;
 
 # define port list array
 portlist=(7081 7082 7083)
 
 # define functions
-function deploy() {
+function removeoldlog() {
 
 for port in ${portlist[@]};
   do
   tomcat_port=tomcat-$port
   tomcat_home=/data/tomcats/${tomcat_port}
-  [ -d ${tomcat_home} ] && find ${tomcat_home}/logs/* -mtime exec -rm -rf {} \;
+
+  [ -d ${tomcat_home} ] && find ${tomcat_home}/logs/* -mtime +10 -exec rm -rf {} \;
+
+  done
 }
 
+removeoldlog
